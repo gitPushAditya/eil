@@ -20,8 +20,6 @@ Then do the following to start -
 - Create main function.
 - Create a stateless widget that returns MaterialApp(MaterialApp.router if working with multiple pages using routers).
 
-_All of these points are explained in detail in upcoming topics._
-
 ---
 
 ## Importing material package
@@ -57,7 +55,7 @@ const MyApp({ super.key });
 }
 ```
 
-*Note: This is just an empty Stateless Widget class, this won't show anything, for our main.dart file, we need to make some changes into it. But first, we need to install go_router package for routing through different pages.*
+*Note: This is just a Stateless Widget class returning empty container, this won't show anything.*
 
 ---
 
