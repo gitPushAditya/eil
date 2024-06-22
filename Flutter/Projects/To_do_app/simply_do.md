@@ -1263,5 +1263,258 @@ class BottomAppBarWidget extends StatelessWidget {
 - Step 40: Create floating bar in widgets folder. - floating_action_button_widget.dart
 
 ```dart
+import 'package:flutter/material.dart';
 
+class FloatingActionButtonWidget extends StatelessWidget {
+  const FloatingActionButtonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      onPressed: () {
+        // TODO: Go to add task page
+      },
+      shape: const CircleBorder(),
+      child: const Icon(Icons.add),
+    );
+  }
+}
+```
+
+- Step 41: Now finally add all these widgets to task_screen.dart
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/drawer_widget.dart';
+import 'package:simply_do/ui/widgets/bottom_app_bar_widget.dart';
+import 'package:simply_do/ui/widgets/floating_action_button_widget.dart';
+
+class TasksScreen extends StatelessWidget {
+  const TasksScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      appBar: AppBar(
+        toolbarHeight: 65,
+        title: const Text('My Day'),
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        centerTitle: true,
+      ),
+      drawer: const DrawerWidget(),
+      // body: ,
+      bottomNavigationBar: const BottomAppBarWidget(),
+      floatingActionButton: const FloatingActionButtonWidget(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+}
+```
+
+_The body section is commented because we still have to create widget for body._
+
+### Creating Body
+
+- Step 42: We need 4 different widgets for four different options in task page body, and then we will display them conditionally. In widgets folder, create another folder - tasks_body and inside that create four different files - my_day.dart, planned.dart, all_tasks.dart, completed_tasks.dart.
+
+- Step 43: For now, let's just create stateful widgets for all four of them, and display normal text for now.
+
+_my_day.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class MyDay extends StatefulWidget {
+  const MyDay({super.key});
+
+  @override
+  State<MyDay> createState() => _MyDayState();
+}
+
+class _MyDayState extends State<MyDay> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Center(
+          child: MediumTitle(
+            text: 'My Day',
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+_planned.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class PlannedTasks extends StatefulWidget {
+  const PlannedTasks({super.key});
+
+  @override
+  State<PlannedTasks> createState() => _PlannedTasksState();
+}
+
+class _PlannedTasksState extends State<PlannedTasks> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Center(
+          child: MediumTitle(
+            text: 'Planned',
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+_all_tasks.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class AllTasks extends StatefulWidget {
+  const AllTasks({super.key});
+
+  @override
+  State<AllTasks> createState() => _AllTasksState();
+}
+
+class _AllTasksState extends State<AllTasks> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Center(
+          child: MediumTitle(
+            text: 'All Tasks',
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+```
+
+_completed_tasks.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class CompletedTasks extends StatefulWidget {
+  const CompletedTasks({super.key});
+
+  @override
+  State<CompletedTasks> createState() => _CompletedTasksState();
+}
+
+class _CompletedTasksState extends State<CompletedTasks> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        child: Center(
+          child: MediumTitle(
+            text: 'Completed Tasks',
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+- Step 44: Now finally add everything and some new functions in tasks_screen.dart
+
+_tasks_screen.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simply_do/core/global_widgets/drawer_widget.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+import 'package:simply_do/data/providers/tasks_screen_state.dart';
+import 'package:simply_do/ui/widgets/bottom_app_bar_widget.dart';
+import 'package:simply_do/ui/widgets/floating_action_button_widget.dart';
+import 'package:simply_do/ui/widgets/tasks_body.dart/all_tasks.dart';
+import 'package:simply_do/ui/widgets/tasks_body.dart/completed_tasks.dart';
+import 'package:simply_do/ui/widgets/tasks_body.dart/my_day.dart';
+import 'package:simply_do/ui/widgets/tasks_body.dart/planned.dart';
+
+class TasksScreen extends StatelessWidget {
+  const TasksScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var tasksScreenState = Provider.of<TasksScreenState>(context);
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      appBar: AppBar(
+        toolbarHeight: 65,
+        title: getTaskTitle(tasksScreenState.selectedTasksScreen),
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        centerTitle: true,
+      ),
+      drawer: const DrawerWidget(),
+      body: gettasksBodyWidget(tasksScreenState.selectedTasksScreen),
+      bottomNavigationBar: const BottomAppBarWidget(),
+      floatingActionButton: const FloatingActionButtonWidget(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Widget gettasksBodyWidget(int bodyIndex) {
+    if (bodyIndex == 0) {
+      return const MyDay();
+    } else if (bodyIndex == 1) {
+      return const PlannedTasks();
+    } else if (bodyIndex == 3) {
+      return const AllTasks();
+    } else if (bodyIndex == 4) {
+      return const CompletedTasks();
+    } else {
+      return Container();
+    }
+  }
+
+  Widget getTaskTitle(int bodyIndex) {
+    if (bodyIndex == 0) {
+      return const BigTitle(
+        text: 'My Day',
+      );
+    } else if (bodyIndex == 1) {
+      return const BigTitle(
+        text: 'Planned',
+      );
+    } else if (bodyIndex == 3) {
+      return const BigTitle(
+        text: 'All Tasks',
+      );
+    } else if (bodyIndex == 4) {
+      return const BigTitle(
+        text: 'Completed',
+      );
+    } else {
+      return Container();
+    }
+  }
+}
 ```
