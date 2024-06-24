@@ -508,7 +508,7 @@ void main() {
 
 ---
 
-### Create text_widgets.dart 
+### Step 11: Create text_widgets.dart 
 
 Create text_widgets.dart in global_widgets folder. This will contain all the type of text that we will use in our app.
 
@@ -755,26 +755,330 @@ class CaptionSmall extends StatelessWidget {
   }
 }
 ```
-
-### Create Drawer widget
-
-Create drawer widget(Without any functions).
-
 ---
 
-### Create page_state.dart
+### Step 12: Add Svg icon
+
+Add svg package 
+
+```commandline
+flutter pub add flutter_svg
+```
+Create another folder - icons inside assets folder and add this svg icon inside it - https://remixicon.com/icon/vip-crown-2-fill  
+
+
+Add assets folder to pubspec.yaml  
+
+```yaml
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/icons/
+  #   - images/a_dot_ham.jpeg
+```
+
+
+### Step 13: Create page_state.dart
 
 Create page_state.dart in providers folder to store page state and change the function to change the appearance of selected page.
 
+```dart
+import 'package:flutter/cupertino.dart';
+
+import '../../core/constants/app_screens.dart';
+
+class PageState extends ChangeNotifier {
+  // Page State
+
+  String _selectedPage = AppScreens.tasks;
+
+  String get selectedPage => _selectedPage;
+
+  void updateSelectedPage(String page) {
+    _selectedPage = page;
+    notifyListeners();
+  }
+}
+```
+
 ---
 
-### Add functions to Drawer
+### Step 14: Add Drawer Widget
 
-Add page changing and page_state changing functions to drawer.
+Add drawer_widget.dart to global_widgets and add functions to change the pages - 
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:simply_do/core/constants/app_screens.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+import 'package:simply_do/data/providers/app_state.dart';
+import 'package:simply_do/ui/themes/colors.dart';
+
+import '../../data/providers/page_state.dart';
+
+class DrawerWidget extends StatelessWidget {
+  const DrawerWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    var appState = Provider.of<AppState>(context, listen: false);
+    var pageState = Provider.of<PageState>(context, listen: false);
+    return Drawer(
+      backgroundColor: themeColor.primaryContainer,
+      child: ListView(
+        padding: const EdgeInsets.all(0),
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: themeColor.secondaryContainer,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  backgroundColor: themeColor.tertiaryContainer,
+                  radius: 30,
+                  child: appState.isPremiumSubscriber
+                      ? SvgPicture.asset(
+                          'assets/icons/crown.svg',
+                          width: 30,
+                          fit: BoxFit.fill,
+                          colorFilter: ColorFilter.mode(
+                            HighlightColors.highlightGolden,
+                            BlendMode.srcIn,
+                          ),
+                        )
+                      : const Icon(
+                          Icons.person,
+                          size: 30,
+                        ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MediumTitle(text: appState.displayUserName),
+                    SubHeading(
+                      text: appState.isPremiumSubscriber
+                          ? 'Premium User'
+                          : 'Normal USer',
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          ListTile(
+            title: SmallTitle(
+              text: 'Tasks',
+              textColor: pageState.selectedPage == AppScreens.tasks
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.tasks);
+              pageState.updateSelectedPage(AppScreens.tasks);
+            },
+          ),
+          ListTile(
+            title: SmallTitle(
+              text: 'Timeline',
+              textColor: pageState.selectedPage == AppScreens.timeline
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.timeline);
+              pageState.updateSelectedPage(AppScreens.timeline);
+            },
+          ),
+          ListTile(
+            title: SmallTitle(
+              text: 'Analytics',
+              textColor: pageState.selectedPage == AppScreens.analytics
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.analytics);
+              pageState.updateSelectedPage(AppScreens.analytics);
+            },
+          ),
+          const Divider(),
+          ListTile(
+            title: SmallTitle(
+              text: 'Settings',
+              textColor: pageState.selectedPage == AppScreens.settings
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.settings);
+              pageState.updateSelectedPage(AppScreens.settings);
+            },
+          ),
+          ListTile(
+            title: SmallTitle(
+              text: 'Premium',
+              textColor: pageState.selectedPage == AppScreens.premium
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.premium);
+              pageState.updateSelectedPage(AppScreens.premium);
+            },
+          ),
+          ListTile(
+            title: SmallTitle(
+              text: 'Tutorial',
+              textColor: pageState.selectedPage == AppScreens.tutorial
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.tutorial);
+              pageState.updateSelectedPage(AppScreens.tutorial);
+            },
+          ),
+          ListTile(
+            title: SmallTitle(
+              text: 'Support',
+              textColor: pageState.selectedPage == AppScreens.support
+                  ? themeColor.secondary
+                  : themeColor.onPrimaryContainer,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              context.goNamed(AppScreens.support);
+              pageState.updateSelectedPage(AppScreens.support);
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
 
 ---
 
-### Add Bottom App Bar
+### Step 15: Add Premium button
+
+Add premium_button.dart to global widgets folder to and create premium button and add it to task page.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:simply_do/core/constants/app_screens.dart';
+
+import '../../data/providers/app_state.dart';
+import '../../ui/themes/colors.dart';
+
+class PremiumButton extends StatelessWidget {
+  const PremiumButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var appState = Provider.of<AppState>(context, listen: false);
+    var themeColor = Theme.of(context).colorScheme;
+    return InkWell(
+      onTap: () {
+        context.goNamed(AppScreens.premium);
+      },
+      child: CircleAvatar(
+        backgroundColor: themeColor.tertiaryContainer,
+        radius: 18,
+        child: appState.isPremiumSubscriber
+            ? SvgPicture.asset(
+                'assets/icons/crown.svg',
+                width: 20,
+                fit: BoxFit.fill,
+                colorFilter: ColorFilter.mode(
+                  HighlightColors.highlightGolden,
+                  BlendMode.srcIn,
+                ),
+              )
+            : const Icon(
+                Icons.person,
+                size: 20,
+              ),
+      ),
+    );
+  }
+}
+```
+
+### Step 16: Add basic structure to all the pages
+
+Add basic scaffold and drawer and actions - premium_button to all the pages except add_task and edit_task
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/drawer_widget.dart';
+import 'package:simply_do/core/global_widgets/premium_button.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+import '../../data/providers/app_state.dart';
+import '../themes/colors.dart';
+
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    return Scaffold(
+      backgroundColor: themeColor.primaryContainer,
+      appBar: AppBar(
+        backgroundColor: themeColor.secondaryContainer,
+        title: const BigTitle(
+          text: 'Tasks', // Change this for every app
+        ),
+        centerTitle: true,
+        toolbarHeight: 65,
+        actions: const [
+          PremiumButton(),
+          SizedBox(
+            width: 14,
+          )
+        ],
+      ),
+      drawer: const DrawerWidget(),
+      body: SingleChildScrollView(),
+    );
+  }
+}
+```
+
+
+### Step 16: Add Bottom App Bar
 
 Add bottom_app_bar in widgets folder to tasks page.(Without Functions)
 
