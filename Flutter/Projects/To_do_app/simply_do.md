@@ -39,15 +39,15 @@ USP - Simple User Interface with all the basic functionalities.
 
 ## Design and Development
 
-### Create a new project - simply_do  
-Open a disignated folder for flutter project and in commnad prompt type - 
+### Step 1:  Create a new project - simply_do  
+Open a designated folder for flutter project and in commnad prompt type - 
 
 ```
 flutter create simply_do
 ```
 ---
 
-### Create basic folder structure - 
+### Step 2: Create basic folder structure - 
 assets file in root folder  
 Inside lib folder -   
 config - env.dart, routes.dart  
@@ -58,11 +58,13 @@ app.dart
 main.dart  
 ---
 
-### Create colors.dart in themes file
+### Step 3: Create colors.dart in themes file
 Create an abstract class for colors to store all the colors. 
 
 _colors.dart_
 ```dart
+import 'dart:ui';
+
 abstract final class DarkThemeOne {
   static Color accentPrimary = const Color(0xff6735AC);
   static Color accentSecondary = const Color(0xff7E46D9);
@@ -73,9 +75,6 @@ abstract final class DarkThemeOne {
   static Color foregroundPrimary = const Color.fromARGB(255, 236, 245, 255);
   static Color foregroundSecondary = const Color(0xffD9D9D9);
   static Color foregroundTertiary = const Color.fromARGB(255, 168, 168, 168);
-  static Color highlightOne = const Color(0xffC50000);
-  static Color highlightTwo = const Color(0xffC79C00);
-  static Color highlightThree = const Color(0xff3DC000);
 }
 
 abstract final class HighlightColors {
@@ -84,11 +83,12 @@ abstract final class HighlightColors {
   static Color highlightGreen = const Color(0xff3DC000);
   static Color highlightGolden = const Color.fromARGB(255, 216, 170, 17);
 }
+
 ```
 ---
-### Create app_themes.dart for themes in themes folder
+### Step 4: Create app_themes.dart for themes in themes folder
 
-Create another abstact class for themes - 
+Create another abstract class for themes - 
 
 ```dart
 import 'package:flutter/material.dart';
@@ -118,7 +118,7 @@ abstract final class AppThemes {
 ```
 ---
 
-### Create a app_screens.dart file in constants folder
+### Step 5: Create a app_screens.dart file in constants folder
 This will store an abstract class for all the string variable for all the screens that will be used.
 - tasks
 - timeline
@@ -126,11 +126,28 @@ This will store an abstract class for all the string variable for all the screen
 - settings
 - premium
 - tutorial
-- contact
+- support
+- add-task
+- edit-task
+
+_app_screens.dart_
+```dart
+abstract final class AppScreens {
+  static String tasks = '/';
+  static String timeline = '/timeline';
+  static String analytics = '/analytics';
+  static String settings = '/settings';
+  static String premium = '/premium';
+  static String tutorial = '/tutorial';
+  static String contact = '/support';
+  static String addTask = '/add-task';
+  static String editTask = '/edit-task';
+}
+```
 
 ---
 
-### Create basic files for all pages
+### Step 6: Create basic files for all pages
 
 Create different files in screens folder for all the pages - 
 
@@ -140,33 +157,604 @@ Create different files in screens folder for all the pages -
 - settings - stateless
 - premium - stateless
 - tutorial - stateless
-- contact - stateless
+- support - stateless
+- add_task - stateful
+- edit_task - stateful
+
+_tasks.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_timeline.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class TimelineScreen extends StatefulWidget {
+  const TimelineScreen({super.key});
+
+  @override
+  State<TimelineScreen> createState() => _TimelineScreenState();
+}
+
+class _TimelineScreenState extends State<TimelineScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_analytics.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class AnalyticsScreen extends StatefulWidget {
+  const AnalyticsScreen({super.key});
+
+  @override
+  State<AnalyticsScreen> createState() => _AnalyticsScreenState();
+}
+
+class _AnalyticsScreenState extends State<AnalyticsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_settings.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_premium.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class PremiumScreen extends StatelessWidget {
+  const PremiumScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_tutorial.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class TutorialScreen extends StatelessWidget {
+  const TutorialScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_support.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class SupportScreen extends StatelessWidget {
+  const SupportScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_add_task.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class AddTaskScreen extends StatefulWidget {
+  const AddTaskScreen({super.key});
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+_edit_task.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class EditTaskScreen extends StatefulWidget {
+  const EditTaskScreen({super.key});
+
+  @override
+  State<EditTaskScreen> createState() => _EditTaskScreenState();
+}
+
+class _EditTaskScreenState extends State<EditTaskScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
 
 ---
 
-### Add go_router and routes.
+### Step 7: Add go_router and routes.
 
-Import router and create a routes.dart in constant to add routes variable. Add all the routes in router variable.
+Import router and create router variable in routes.dart in config folder. We already have String constants for all the pages in app_screens.dart
+
+```commandline
+flutter pub add go_router
+```
+
+_routes.dart_
+
+```dart
+import 'package:go_router/go_router.dart';
+import 'package:simply_do/ui/screens/add_task.dart';
+import 'package:simply_do/ui/screens/analytics.dart';
+import 'package:simply_do/ui/screens/edit_task.dart';
+import 'package:simply_do/ui/screens/premium.dart';
+import 'package:simply_do/ui/screens/settings.dart';
+import 'package:simply_do/ui/screens/support.dart';
+import 'package:simply_do/ui/screens/tasks.dart';
+import 'package:simply_do/ui/screens/timeline.dart';
+import 'package:simply_do/ui/screens/tutorial.dart';
+
+import '../core/constants/app_screens.dart';
+
+final router = GoRouter(
+  initialLocation: AppScreens.tasks,
+  debugLogDiagnostics: true, // TODO : Only for debug purpose, remove it later
+  routes: [
+    GoRoute(
+      name: AppScreens.tasks,
+      path: AppScreens.tasks,
+      builder: (context, state) => const TasksScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.timeline,
+      path: AppScreens.timeline,
+      builder: (context, state) => const TimelineScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.analytics,
+      path: AppScreens.analytics,
+      builder: (context, state) => const AnalyticsScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.settings,
+      path: AppScreens.settings,
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.premium,
+      path: AppScreens.premium,
+      builder: (context, state) => const PremiumScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.tutorial,
+      path: AppScreens.tutorial,
+      builder: (context, state) => const TutorialScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.support,
+      path: AppScreens.support,
+      builder: (context, state) => const SupportScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.addTask,
+      path: AppScreens.addTask,
+      builder: (context, state) => const AddTaskScreen(),
+    ),
+    GoRoute(
+      name: AppScreens.editTask,
+      path: AppScreens.editTask,
+      builder: (context, state) => const EditTaskScreen(),
+    ),
+  ],
+);
+```
 
 ---
 
-### Add app_state.dart in providers folder
+### Step 8: Add app_state.dart in providers folder
 
 Import provider and add app_state.dart in provider folder and initially take selected theme and premium subscriber and user_name as state.
 
+_app_state.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/ui/themes/app_themes.dart';
+
+class AppState extends ChangeNotifier {
+  // User Info
+
+  String _userName = "User";
+
+  String get userName => _userName;
+
+  void updateUserName(String name) {
+    _userName = name;
+    // TODO : Update in local database
+    notifyListeners();
+  }
+
+  // Subscription Info
+
+  bool _isPremiumSubscriber = false;
+
+  bool get isPremiumSubscriber => _isPremiumSubscriber;
+
+  void updateSubscription(bool isSubscribed) {
+    _isPremiumSubscriber = isSubscribed;
+    // TODO : Update in online database
+    notifyListeners();
+  }
+
+  ThemeData _selectedTheme = AppThemes.darkThemeOne();
+
+  ThemeData get selectedTheme => _selectedTheme;
+
+  void updateSelectedTheme(ThemeData selectedTheme) {
+    _selectedTheme = selectedTheme;
+    // TODO : Store in local database
+    notifyListeners();
+  }
+}
+```
+
 ---
 
-### Edit app.dart
+### Step 9: Edit app.dart
 
 Add all the required code in app.dart file with Material app, router and provider.
 
+_app.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simply_do/config/routes.dart';
+import 'package:simply_do/data/providers/app_state.dart';
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AppState()),
+      ],
+      child: Builder(
+        builder: (context) {
+          final appState = context.watch<AppState>();
+          return MaterialApp.router(
+            routerConfig: router,
+            debugShowCheckedModeBanner: false,
+            theme: appState.selectedTheme,
+          );
+        },
+      ),
+    );
+  }
+}
+```
+
 ---
 
-### Edit main.dart
+### Step 10: Edit main.dart
 
 Add app class in main.dart file and run the app once.
 
+_main.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'app.dart';
+
+void main() {
+  runApp(
+    const MyApp(),
+  );
+}
+```
+
 ---
+
+### Create text_widgets.dart 
+
+Create text_widgets.dart in global_widgets folder. This will contain all the type of text that we will use in our app.
+
+_text_widgets.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class LargeTitle extends StatelessWidget {
+  const LargeTitle(
+      {super.key, required this.text, this.textColor, this.textFontSize = 26});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class BigTitle extends StatelessWidget {
+  const BigTitle(
+      {super.key, required this.text, this.textColor, this.textFontSize = 24});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class MediumTitle extends StatelessWidget {
+  const MediumTitle(
+      {super.key, required this.text, this.textColor, this.textFontSize = 22});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class SmallTitle extends StatelessWidget {
+  const SmallTitle(
+      {super.key, required this.text, this.textColor, this.textFontSize = 20});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class Headline extends StatelessWidget {
+  const Headline({
+    super.key,
+    required this.text,
+    this.textColor,
+    this.textFontSize = 18,
+    this.fontWeight = FontWeight.bold,
+  });
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+  final FontWeight fontWeight;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+        fontWeight: fontWeight,
+      ),
+    );
+  }
+}
+
+class BodyLarge extends StatelessWidget {
+  const BodyLarge(
+      {super.key, required this.text, this.textColor, this.textFontSize = 17});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class BodySmall extends StatelessWidget {
+  const BodySmall(
+      {super.key, required this.text, this.textColor, this.textFontSize = 16});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class SubHeading extends StatelessWidget {
+  const SubHeading(
+      {super.key, required this.text, this.textColor, this.textFontSize = 15});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class FootNote extends StatelessWidget {
+  const FootNote(
+      {super.key, required this.text, this.textColor, this.textFontSize = 13});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class CaptionBig extends StatelessWidget {
+  const CaptionBig(
+      {super.key, required this.text, this.textColor, this.textFontSize = 12});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+
+class CaptionSmall extends StatelessWidget {
+  const CaptionSmall(
+      {super.key, required this.text, this.textColor, this.textFontSize = 11});
+
+  final String text;
+  final Color? textColor;
+  final double textFontSize;
+
+  @override
+  Widget build(BuildContext context) {
+    textColor ?? Theme.of(context).colorScheme.onPrimaryContainer;
+    return Text(
+      text,
+      style: TextStyle(
+        color: textColor,
+        fontSize: textFontSize,
+      ),
+    );
+  }
+}
+```
 
 ### Create Drawer widget
 
