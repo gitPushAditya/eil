@@ -24,7 +24,7 @@ USP - Simple User Interface with all the basic functionalities.
 ## Planning:-
 
 - **Sidebar** contains User Profile Info(if set) and links to different pages. Those pages will be Tasks(default page), Timeline, Analytics, Profile, Premium, Contact and Other Apps.
-- **Task Page** appbar at the top with title in middle and premium option at right. In bottomAppBar, 4 options - My Day, Planned, All, Completed. Floating action button will allow to add new task.
+- **Task Page** App bar at the top with title in middle and premium option at right. In bottomAppBar, 4 options - My Day, Planned, All, Completed. Floating action button will allow to add new task.
 - **My Day** will contain all the tasks due today sorted according to priorities.
 - **Planned** will contain all the tasks that is planned for some date. They will be sorted by date with date dropdown tag and then for each date, sorted by priorities.
 - **All** will contain all the incomplete tasks, planned or otherwise. First Unplanned with dropdown tag and then planned with date dropdown tag.
@@ -39,29 +39,35 @@ USP - Simple User Interface with all the basic functionalities.
 
 ## Design and Development
 
-### Step 1:  Create a new project - simply_do  
-Open a designated folder for flutter project and in commnad prompt type - 
+### Step 1: Create a new project - simply_do
+
+Open a designated folder for flutter project and in command prompt type -
 
 ```
 flutter create simply_do
 ```
+
 ---
 
-### Step 2: Create basic folder structure - 
+### Step 2: Create basic folder structure -
+
 assets file in root folder  
-Inside lib folder -   
+Inside lib folder -  
 config - env.dart, routes.dart  
 core - constants, global_widgets, utils  
 data - database, models, providers  
 ui - screens, themes, widgets  
 app.dart  
-main.dart  
+main.dart
+
 ---
 
-### Step 3: Create colors.dart in themes file
-Create an abstract class for colors to store all the colors. 
+### Step 3: Create colors.dart in themes folder
+
+Create an abstract class for colors to store all the colors.
 
 _colors.dart_
+
 ```dart
 import 'dart:ui';
 
@@ -85,10 +91,12 @@ abstract final class HighlightColors {
 }
 
 ```
+
 ---
+
 ### Step 4: Create app_themes.dart for themes in themes folder
 
-Create another abstract class for themes - 
+Create another abstract class for themes -
 
 ```dart
 import 'package:flutter/material.dart';
@@ -116,10 +124,13 @@ abstract final class AppThemes {
   }
 }
 ```
+
 ---
 
 ### Step 5: Create a app_screens.dart file in constants folder
+
 This will store an abstract class for all the string variable for all the screens that will be used.
+
 - tasks
 - timeline
 - analytics
@@ -131,6 +142,7 @@ This will store an abstract class for all the string variable for all the screen
 - edit-task
 
 _app_screens.dart_
+
 ```dart
 abstract final class AppScreens {
   static String tasks = '/';
@@ -149,7 +161,7 @@ abstract final class AppScreens {
 
 ### Step 6: Create basic files for all pages
 
-Create different files in screens folder for all the pages - 
+Create different files in screens folder for all the pages -
 
 - tasks - stateful
 - timeline - stateful
@@ -406,6 +418,10 @@ final router = GoRouter(
 
 Import provider and add app_state.dart in provider folder and initially take selected theme and premium subscriber and user_name as state.
 
+```
+flutter pub add provider
+```
+
 _app_state.dart_
 
 ```dart
@@ -508,7 +524,7 @@ void main() {
 
 ---
 
-### Step 11: Create text_widgets.dart 
+### Step 11: Create text_widgets.dart
 
 Create text_widgets.dart in global_widgets folder. This will contain all the type of text that we will use in our app.
 
@@ -755,23 +771,23 @@ class CaptionSmall extends StatelessWidget {
   }
 }
 ```
+
 ---
 
 ### Step 12: Add Svg icon
 
-Add svg package 
+Add svg package
 
 ```commandline
 flutter pub add flutter_svg
 ```
-Create another folder - icons inside assets folder and add this svg icon inside it - https://remixicon.com/icon/vip-crown-2-fill  
 
+Create another folder - icons inside assets folder and add this svg icon inside it - https://remixicon.com/icon/vip-crown-2-fill
 
-Add assets folder to pubspec.yaml  
+Add assets folder to pubspec.yaml
 
 ```yaml
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -782,7 +798,6 @@ flutter:
     - assets/icons/
   #   - images/a_dot_ham.jpeg
 ```
-
 
 ### Step 13: Create page_state.dart
 
@@ -811,7 +826,7 @@ class PageState extends ChangeNotifier {
 
 ### Step 14: Add Drawer Widget
 
-Add drawer_widget.dart to global_widgets and add functions to change the pages - 
+Add drawer_widget.dart to global_widgets and add functions to change the pages -
 
 ```dart
 import 'package:flutter/material.dart';
@@ -1077,106 +1092,1962 @@ class _TasksScreenState extends State<TasksScreen> {
 }
 ```
 
-
-### Step 16: Add Bottom App Bar
-
-Add bottom_app_bar in widgets folder to tasks page.(Without Functions)
-
 ---
 
-### Create tasks_screen_state.dart
+### Step 17: Create 4 widgets for tasks body
 
-Create tasks_screen_state.dart in providers folder and add variables and functions to track state of tasks screen.
+Create 4 different widgets with simple text in widgets folder, these widgets will serve as body of tasks page.
 
----
-
-### Create 4 widgets for tasks body
-
-Create 4 different widgets with simple text in widgets folder  
 - my_day.dart
 - planned.dart
 - all_tasks.dart
 - completed.dart
 
+_my_day_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class MyDayWidget extends StatefulWidget {
+  const MyDayWidget({super.key});
+
+  @override
+  State<MyDayWidget> createState() => _MyDayWidgetState();
+}
+
+class _MyDayWidgetState extends State<MyDayWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Text('My Day');
+  }
+}
+```
+
+_planned_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class PlannedWidget extends StatefulWidget {
+const PlannedWidget({super.key});
+
+@override
+State<PlannedWidget> createState() => \_PlannedWidgetState();
+}
+
+class \_PlannedWidgetState extends State<PlannedWidget> {
+@override
+Widget build(BuildContext context) {
+return Text('Planned');
+}
+}
+
+```
+
+_all_tasks_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class AllTasksWidget extends StatefulWidget {
+  const AllTasksWidget({super.key});
+
+  @override
+  State<AllTasksWidget> createState() => _AllTasksWidgetState();
+}
+
+class _AllTasksWidgetState extends State<AllTasksWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Text('All Task');
+  }
+}
+```
+
+_completed_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class CompletedWidget extends StatefulWidget {
+  const CompletedWidget({super.key});
+
+  @override
+  State<CompletedWidget> createState() => _CompletedWidgetState();
+}
+
+class _CompletedWidgetState extends State<CompletedWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Text('Completed');
+  }
+}
+```
+
 ---
 
-### Create functions to manage state body change
+### Step 18: Create tasks_page_state.dart
 
-Create functions in bottom_app_bar and tasks page to change body, state, app title based on bottom app bar selection.
+Create tasks_page_state.dart in providers folder and add variables and functions to track state of tasks page body.
 
----
+_tasks_page_state.dart_
 
-### Create floating action button
+```dart
+import 'package:flutter/cupertino.dart';
+import 'package:simply_do/ui/widgets/all_tasks_widget.dart';
+import 'package:simply_do/ui/widgets/completed_widget.dart';
+import 'package:simply_do/ui/widgets/my_day_widget.dart';
+import 'package:simply_do/ui/widgets/planned_widget.dart';
 
-Create floating action button which will direct to another screen called add_task.dart
+class TasksPageState extends ChangeNotifier {
+  int _taskPageSelected = 0;
 
----
+  int get taskPageSelected => _taskPageSelected;
 
-### Create another screen add_task.dart
+  Widget get taskPageWidget {
+    if (_taskPageSelected == 0) {
+      return const MyDayWidget();
+    } else if (_taskPageSelected == 1) {
+      return const PlannedWidget();
+    } else if (_taskPageSelected == 3) {
+      return const AllTasksWidget();
+    } else if (_taskPageSelected == 4) {
+      return const CompletedWidget();
+    } else {
+      return const MyDayWidget();
+    }
+  }
 
-Create another screen and add it to screens folder, also add it in screen constant and router variable
-
----
-
-### Create a priority enum
-
-Create a priority_type.dart enum in utils folder to store priority
-
----
-
-### Create notification enum
-
-Create notification_type.dart enum in utils to store notification type.
-
----
-
-### Create weekDays enum
-
-Create enum for weekDays to be added in customRepeatDays
-
----
-
-### Create subtask class
-
-Crate a model class for subTask to store subTaskName and is completed status
-
----
-
-### Create task_model.dart 
-
-Create a task model to add a new task -
-
-- taskKey
-- taskName
-- taskDescription
-- taskDueDate
-- taskPriorityType
-- taskNotification
-- taskNotificationType
-- taskNotificationTime
-- taskRepeat
-- taskRepeatType
-- taskCustomRepeatDays
-- subTasks
-- isCompleted
-- lastCompleted
-- nextDueDate
+  void updateTaskPageSelected(int value) {
+    _taskPageSelected = value;
+    notifyListeners();
+  }
+}
+```
 
 ---
 
-### Work on add_task.dart 
+### Step 19: Add Bottom App Bar
 
-Create UI for add task(no function)
+Add bottom_app_bar in widgets folder for tasks page.
+
+_bottom_app_bar_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simply_do/data/providers/tasks_page_state.dart';
+
+class BottomAppBarWidget extends StatelessWidget {
+  const BottomAppBarWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var taskPageState = Provider.of<TasksPageState>(context);
+    return BottomAppBar(
+      height: 60,
+      padding: EdgeInsets.zero,
+      shape: const CircularNotchedRectangle(),
+      notchMargin: 10,
+      clipBehavior: Clip.antiAlias,
+      child: BottomNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        onTap: (value) {
+          // Value 2(3rd item is transparent, only for gap purpose
+          if (value != 2) {
+            taskPageState.updateTaskPageSelected(value);
+          }
+        },
+        currentIndex: taskPageState.taskPageSelected,
+        iconSize: 25,
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.sunny),
+            label: 'My Day',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_month),
+            label: 'Planned',
+          ),
+          // This is only for gap purpose
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.sunny,
+              color: Colors.transparent,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.format_list_bulleted),
+            label: 'All Tasks',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment_turned_in),
+            label: 'Completed',
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
 
 ---
 
-### Create task_database
+### Step 20: Create another screen add_task.dart
 
-import sqflite and add database for task
+Create another screen and add it to screens folder, also add it in screen constant and router variable.
+
+Add a simple scaffold for now with app bar and title and close function.
+
+_add_task.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simply_do/core/constants/app_screens.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class AddTaskScreen extends StatefulWidget {
+  const AddTaskScreen({super.key});
+
+  @override
+  State<AddTaskScreen> createState() => _AddTaskScreenState();
+}
+
+class _AddTaskScreenState extends State<AddTaskScreen> {
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    return Scaffold(
+      backgroundColor: themeColor.primaryContainer,
+      appBar: AppBar(
+        backgroundColor: themeColor.secondaryContainer,
+        title: const BigTitle(text: 'Add Task'),
+        toolbarHeight: 65,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            context.goNamed(AppScreens.tasks);
+          },
+          icon: const Icon(
+            Icons.close,
+            size: 30,
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // TODO: Add function to save new task
+            },
+            icon: const Icon(
+              Icons.check,
+              size: 30,
+            ),
+          ),
+          const SizedBox(
+            width: 6,
+          ),
+        ],
+      ),
+    );
+  }
+}
+```
 
 ---
 
-### Subtask to json String
+### Step 21: Create floating action button
+
+Create floating action button which will direct add_task.dart
+
+_floating_action_button_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simply_do/core/constants/app_screens.dart';
+
+class FloatingActionButtonWidget extends StatelessWidget {
+  const FloatingActionButtonWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      onPressed: () {
+        context.goNamed(AppScreens.addTask);
+      },
+      shape: const CircleBorder(),
+      child: const Icon(Icons.add),
+    );
+  }
+}
+```
+
+---
+
+### Step 22: Add everything to Tasks Screen
+
+Add bottom navigation bar, floating action button and body widget to Tasks screen.
+
+_tasks.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simply_do/core/global_widgets/drawer_widget.dart';
+import 'package:simply_do/core/global_widgets/premium_button.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+import 'package:simply_do/data/providers/tasks_page_state.dart';
+import 'package:simply_do/ui/widgets/bottom_app_bar_widget.dart';
+import 'package:simply_do/ui/widgets/floating_action_button_widget.dart';
+
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  @override
+  Widget build(BuildContext context) {
+    var taskPageState = Provider.of<TasksPageState>(context);
+    var themeColor = Theme.of(context).colorScheme;
+    return Scaffold(
+      backgroundColor: themeColor.primaryContainer,
+      appBar: AppBar(
+        backgroundColor: themeColor.secondaryContainer,
+        title: const BigTitle(
+          text: 'Tasks',
+        ),
+        centerTitle: true,
+        toolbarHeight: 65,
+        actions: const [
+          PremiumButton(),
+          SizedBox(
+            width: 14,
+          )
+        ],
+      ),
+      drawer: const DrawerWidget(),
+      body: taskPageState.taskPageWidget,
+      bottomNavigationBar: const BottomAppBarWidget(),
+      floatingActionButton: const FloatingActionButtonWidget(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+}
+```
+
+---
+
+### Step 23: Create Text Widget for Name, Description
+
+Create a text widget named text_widget.dart in widgets folder. It will be used for Task Name and Task Description.
+
+_text_field_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class TextFieldWidget extends StatelessWidget {
+  const TextFieldWidget({
+    super.key,
+    required this.textEditingController,
+    required this.hintText,
+    required this.iconData,
+    required this.labelText,
+  });
+
+  final TextEditingController textEditingController;
+  final String labelText;
+  final String hintText;
+  final IconData iconData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            size: 32,
+          ),
+          const SizedBox(
+            width: 32,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MediumTitle(
+                  text: labelText,
+                  textColor: Theme.of(context).colorScheme.tertiary,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  controller: textEditingController,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    border: InputBorder.none,
+                    hintText: hintText,
+                    contentPadding: const EdgeInsets.all(0),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 24: Add Name and Description Widget to add_task screen
+
+In \_AddTaskScreenState class, create two late variables -
+
+```dart
+late TextEditingController taskNameController;
+late TextEditingController taskDescController;
+```
+
+Create an init function to initialize them -
+
+```dart
+@override
+  void initState() {
+    super.initState();
+    taskNameController = TextEditingController();
+    taskDescController = TextEditingController();
+  }
+```
+
+Now in body of scaffold, add SingleChildScrollView and a Column within it, and then add TextField Widget for Task Name and Task Description.
+
+```dart
+TextFieldWidget(
+                textEditingController: taskNameController,
+                hintText: 'Add Task Name',
+                iconData: Icons.edit,
+                labelText: 'Task Name'),
+            const Divider(),
+            TextFieldWidget(
+                textEditingController: taskDescController,
+                hintText: 'Add Task Description',
+                iconData: Icons.edit_note,
+                labelText: 'Task Description'),
+            const Divider(),
+```
+
+### Step 25: Create a Date Widget
+
+Create a date widget named date_widget.dart in widget folder for adding due date.
+
+Add 'intl' package for date formatting.
+
+```
+flutter pub add intl
+```
+
+_date_picker_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import '../../../core/global_widgets/text_widgets.dart';
+
+class DatePickerWidget extends StatelessWidget {
+  const DatePickerWidget(
+      {super.key,
+      required this.labelText,
+      required this.iconData,
+      required this.dueDate,
+      required this.displayText,
+      required this.onDueDateChanged});
+
+  final String labelText;
+  final IconData iconData;
+  final DateTime? dueDate;
+  final String displayText;
+  final Function onDueDateChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            size: 32,
+          ),
+          const SizedBox(
+            width: 32,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MediumTitle(
+                  text: labelText,
+                  textColor: Theme.of(context).colorScheme.tertiary,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                InkWell(
+                  onTap: () {
+                    showDatePicker(
+                      context: context,
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(3000),
+                      builder: (BuildContext context, Widget? child) {
+                        return Theme(
+                          data: ThemeData(
+                            colorScheme: ColorScheme.dark(
+                              primary: themeColor.primary,
+                              surface: themeColor.tertiaryContainer,
+                              onSurface: themeColor.onPrimaryContainer,
+                            ),
+                          ),
+                          child: child!,
+                        );
+                      },
+                    ).then((selectedDate) {
+                      if (selectedDate == null) {
+                        return;
+                      }
+                      onDueDateChanged(selectedDate);
+                    });
+                  },
+                  child: BodyLarge(
+                    text: displayText,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 26: Add date widget to add_task screen
+
+In \_AddTaskScreenState class, add another variable for storing date
+
+```dart
+DateTime? dueDate;
+```
+
+Now add date_picker_widget to children of the column, after Task description and divider
+
+```dart
+DatePickerWidget(
+              labelText: 'Due Date',
+              iconData: Icons.today,
+              dueDate: dueDate,
+              displayText: setDueDateDisplayText(dueDate),
+              onDueDateChanged: (selectedDate) {
+                setState(
+                  () {
+                    dueDate = selectedDate;
+                  },
+                );
+              },
+            ),
+            const Divider(),
+```
+
+### Step 27: Create a ListTile Widget for Radio Button
+
+Create a custom list-tile widget in widgets folder that we are going to use multiple times for radio-buttons.
+
+_radio_tile.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import '../../../core/global_widgets/text_widgets.dart';
+
+class RadioTile<T> extends StatelessWidget {
+  final String title;
+  final ValueChanged<T?> onChanged;
+  final T value;
+  final T groupValue;
+
+  const RadioTile(
+      {super.key,
+      required this.title,
+      required this.onChanged,
+      required this.value,
+      required this.groupValue});
+
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    return ListTile(
+      title: BodyLarge(
+        text: title,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 0),
+      onTap: () {
+        onChanged(value);
+      },
+      leading: Radio<T>(
+        activeColor: themeColor.tertiary,
+        value: value,
+        groupValue: groupValue,
+        onChanged: onChanged,
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 28: Create a Selection Widget for Priority
+
+Create a Widget with Container that will let user select the Priority of Task.
+
+_priority_selection_widget.dart_
+
+```dart
+class PrioritySelectionWidget extends StatelessWidget {
+  const PrioritySelectionWidget(
+      {super.key,
+      required this.iconData,
+      required this.labelText,
+      required this.priorityDisplayText,
+      required this.onPriorityChanged,
+      required this.selectedPriority});
+
+  final IconData iconData;
+  final String labelText;
+  final String priorityDisplayText;
+  final PriorityOptions selectedPriority;
+  final Function onPriorityChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    PriorityOptions pickedPriority = selectedPriority;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            size: 32,
+          ),
+          const SizedBox(
+            width: 32,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MediumTitle(
+                  text: labelText,
+                  textColor: Theme.of(context).colorScheme.tertiary,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                InkWell(
+                  onTap: () {
+                    showDialogBox(context, pickedPriority, themeColor); // We will create this is new step
+                  },
+                  child: BodyLarge(
+                    text: priorityDisplayText,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 29: Write function to show dialog for Priority
+
+In the same PriorityWidgetSelection class, write a function to show dialog box
+
+```dart
+void showDialogBox(BuildContext context, PriorityOptions pickedPriority,
+      ColorScheme themeColor) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return PopScope(
+          onPopInvoked: (_) {
+            pickedPriority = selectedPriority;
+          },
+          child: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return AlertDialog(
+                backgroundColor: themeColor.tertiaryContainer,
+                title: SmallTitle(
+                  text: 'Select Priority Type',
+                  textColor: themeColor.tertiary,
+                ),
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (var option in PriorityOptions.values)
+                        RadioTile<PriorityOptions>(
+                            title: getPriorityText(option),
+                            onChanged: (option) {
+                              setState(() {
+                                pickedPriority = option!;
+                              });
+                            },
+                            value: option,
+                            groupValue: pickedPriority)
+                    ],
+                  ),
+                ),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        child: BodySmall(
+                          text: 'Cancel',
+                          textColor: themeColor.tertiary,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          onPriorityChanged(pickedPriority);
+                          context.pop();
+                        },
+                        child: BodySmall(
+                          text: 'Ok',
+                          textColor: themeColor.tertiary,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+```
+
+---
+
+### Step 30: Add priority_selection_widget to add_task screen
+
+Create a new variable in \_AddTaskScreenState class for priority options
+
+```dart
+PriorityOptions selectedPriority = PriorityOptions.none;
+```
+
+Add priority_selection_widget to column after due date and divider.
+
+```dart
+PrioritySelectionWidget(
+              iconData: Icons.priority_high,
+              labelText: 'Set Priority',
+              priorityDisplayText: getPriorityText(selectedPriority),
+              onPriorityChanged: (value) {
+                setState(() {
+                  selectedPriority = value;
+                });
+              },
+              selectedPriority: selectedPriority,
+            ),
+            const Divider(),
+```
+
+---
+
+### Step 31: Create Repeat Functions
+
+Create a utility function to add RepeatType enum, DaysOfWeek enum and functions to get their string values.
+
+_repeat_function.dart_
+
+```dart
+enum RepeatType { daily, weekly, monthly, yearly, custom }
+
+enum DaysOfWeek {
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday
+}
+
+String getRepeatTypeString(RepeatType repeatType) {
+  switch (repeatType) {
+    case RepeatType.daily:
+      return 'Repeat Daily';
+    case RepeatType.weekly:
+      return 'Repeat Weekly';
+    case RepeatType.monthly:
+      return 'Repeat Monthly';
+    case RepeatType.yearly:
+      return 'Repeat Yearly';
+    case RepeatType.custom:
+      return 'Custom Days';
+  }
+}
+
+String getDaysOfWeekString(DaysOfWeek daysOfWeek) {
+  switch (daysOfWeek) {
+    case DaysOfWeek.monday:
+      return 'M';
+    case DaysOfWeek.tuesday:
+      return 'T';
+    case DaysOfWeek.wednesday:
+      return 'W';
+    case DaysOfWeek.thursday:
+      return 'Th';
+    case DaysOfWeek.friday:
+      return 'F';
+    case DaysOfWeek.saturday:
+      return 'Sa';
+    case DaysOfWeek.sunday:
+      return 'S';
+  }
+}
+```
+
+### Step 32: Create Repeat Widget
+
+Now let's create a Repeat Widget that will allow user to select Repeat Type.
+
+_repeat_selection_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+import 'package:simply_do/core/utils/repeat_function.dart';
+import 'package:simply_do/ui/widgets/task_form_screen_widgets/radio_tile.dart';
+
+class RepeatSelectionWidget extends StatelessWidget {
+  const RepeatSelectionWidget(
+      {super.key,
+      required this.iconData,
+      required this.labelText,
+      required this.repeatDisplayText,
+      required this.selectedRepeatType,
+      required this.customDays,
+      required this.setSelectedRepeatType,
+      required this.setCustomDays});
+
+  final IconData iconData;
+  final String labelText;
+  final String repeatDisplayText;
+  final RepeatType selectedRepeatType;
+  final List<DaysOfWeek> customDays;
+  final Function setSelectedRepeatType;
+  final Function setCustomDays;
+
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    RepeatType pickedRepeatType = selectedRepeatType;
+    List<DaysOfWeek> pickedCustomDays = customDays;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 18),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            size: 32,
+          ),
+          const SizedBox(
+            width: 32,
+          ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MediumTitle(
+                  text: labelText,
+                  textColor: themeColor.tertiary,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                InkWell(
+                  onTap: () {
+                    showDialogBox(context, pickedRepeatType, pickedCustomDays,
+                        themeColor); // We will add this in next step
+                  },
+                  child: BodyLarge(
+                    text: repeatDisplayText,
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 33: Create showDialogBox function for Repeat Widget
+
+This will create a dialog box UI and functions that will be shown to the user when they tap to select Repeat Type.
+
+Write this in the same class - RepeatSelectionWidget
+
+```dart
+void showDialogBox(BuildContext context, RepeatType pickedRepeatType,
+      List<DaysOfWeek> pickedCustomDays, ColorScheme themeColor) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return PopScope(
+          onPopInvoked: (_) {
+            pickedRepeatType = selectedRepeatType;
+            pickedCustomDays = customDays;
+          },
+          child: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return AlertDialog(
+                backgroundColor: themeColor.tertiaryContainer,
+                contentPadding: const EdgeInsets.all(16),
+                actionsPadding:
+                    const EdgeInsets.only(top: 0, right: 8, left: 8, bottom: 8),
+                title: SmallTitle(
+                  text: 'Select Repeat Type',
+                  textColor: themeColor.tertiary,
+                ),
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (var option in RepeatType.values)
+                        RadioTile<RepeatType>(
+                            title: getRepeatTypeString(option),
+                            onChanged: (option) {
+                              setState(() {
+                                pickedRepeatType = option!;
+                              });
+                            },
+                            value: option,
+                            groupValue: pickedRepeatType),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          // TODO: Add Chip for all the days
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        child: BodySmall(
+                          text: 'Cancel',
+                          textColor: themeColor.tertiary,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          setSelectedRepeatType(pickedRepeatType);
+                          setCustomDays(pickedCustomDays);
+                          context.pop();
+                        },
+                        child: BodySmall(
+                          text: 'Ok',
+                          textColor: themeColor.tertiary,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+```
+
+---
+
+### Step 34: Character Chip
+
+Let's create a character chip which which will show each day of the week by using DaysOfWeek enum.
+
+_character_chip.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+class CharacterChip<T> extends StatelessWidget {
+  const CharacterChip(
+      {super.key,
+      required this.displayText,
+      required this.value,
+      required this.pickedValues,
+      required this.onListChanged});
+
+  final String displayText;
+  final T value;
+  final List<T> pickedValues;
+  final ValueChanged<List<T>> onListChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final themeColor = Theme.of(context).colorScheme;
+    final itemColor = pickedValues.contains(value)
+        ? themeColor.tertiary
+        : themeColor.onPrimaryContainer;
+    return GestureDetector(
+      onTap: () {
+        if (pickedValues.contains(value)) {
+          pickedValues.remove(value);
+        } else {
+          pickedValues.add(value);
+        }
+        onListChanged(pickedValues);
+      },
+      child: Container(
+        margin: const EdgeInsets.all(2),
+        child: Chip(
+          padding: EdgeInsets.zero,
+          label: ConstrainedBox(
+            constraints: const BoxConstraints(
+              minWidth: 16,
+              maxWidth: 16,
+              minHeight: 16,
+            ),
+            child: Center(
+              child: CaptionBig(
+                text: displayText,
+                textColor: itemColor,
+              ),
+            ),
+          ),
+          shape: StadiumBorder(
+            side: BorderSide(color: itemColor),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 35: Add Repeat Widget to Add Task
+
+Create 2 new variables in \_AddTaskScreenState class for repeat type and days of week list if custom days are selected in repeat type.
+
+```dart
+RepeatType selectedRepeatType = RepeatType.once;
+  List<DaysOfWeek> selectedCustomDays = [];
+```
+
+Now add Repeat widget to the column
+
+```dart
+RepeatSelectionWidget(
+              iconData: Icons.replay,
+              labelText: 'Set Repeat',
+              repeatDisplayText: getRepeatTypeString(selectedRepeatType),
+              selectedRepeatType: selectedRepeatType,
+              customDays: selectedCustomDays,
+              setSelectedRepeatType: (value) {
+                setState(() {
+                  selectedRepeatType = value;
+                });
+              },
+              setCustomDays: (value) {
+                selectedCustomDays = value;
+              },
+            ),
+            const Divider(),
+```
+
+### Step 36: Create Notification Enum and Functions
+
+Create an enum for notification and function to show String values. The values will be -
+
+- Off
+- Notify
+- Alarm
+
+```dart
+enum NotificationType { off, notify, alarm }
+
+String getNotificationString(NotificationType notificationType) {
+  switch (notificationType) {
+    case NotificationType.off:
+      return 'Off';
+    case NotificationType.notify:
+      return 'Notify on';
+    case NotificationType.alarm:
+      return 'Alarm on';
+  }
+}
+```
+
+### Step 37: Create Notification Widget
+
+Create a widget that will allow users to select notification status and notification type.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+import 'package:simply_do/core/utils/notification_function.dart';
+
+class NotificationSelectionWidget extends StatelessWidget {
+const NotificationSelectionWidget(
+{super.key,
+required this.iconData,
+required this.labelText,
+required this.notificationDisplayText,
+required this.selectedNotificationType,
+required this.onNotificationTypeChanged});
+
+final IconData iconData;
+final String labelText;
+final String notificationDisplayText;
+final NotificationType selectedNotificationType;
+final ValueChanged<NotificationType> onNotificationTypeChanged;
+
+@override
+Widget build(BuildContext context) {
+var themeColor = Theme.of(context).colorScheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            size: 32,
+          ),
+          const SizedBox(
+            width: 32,
+          ),
+          Expanded(
+              child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MediumTitle(
+                text: labelText,
+                textColor: themeColor.tertiary,
+              ),
+              const SizedBox(height: 8,),
+              InkWell(
+                onTap: (){
+                  // TODO: Add showDialog function
+                },
+                child:
+                BodyLarge(text: notificationDisplayText,),
+              )
+
+            ],
+          ))
+        ],
+      ),
+    );
+
+}
+}
+```
+
+---
+
+### Step 38: Add showDialog function
+
+Create a void function in same class to show alert dialog box
+
+```dart
+void showDialogBox(BuildContext context,
+      NotificationType pickedNotificationType, ColorScheme themeColor) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return PopScope(
+          onPopInvoked: (_) {
+            pickedNotificationType = selectedNotificationType;
+          },
+          child: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return AlertDialog(
+                backgroundColor: themeColor.tertiaryContainer,
+                contentPadding: const EdgeInsets.all(16),
+                actionsPadding:
+                    const EdgeInsets.only(top: 0, right: 8, left: 8, bottom: 8),
+                title: SmallTitle(
+                  text: 'Select Notification Type',
+                  textColor: themeColor.tertiary,
+                ),
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (var option in NotificationType.values)
+                        RadioTile<NotificationType>(
+                            title: getNotificationString(option),
+                            onChanged: (notificationType) {
+                              setState(() {
+                                pickedNotificationType = notificationType!;
+                              });
+                            },
+                            value: option,
+                            groupValue: pickedNotificationType)
+                    ],
+                  ),
+                ),
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        child: BodySmall(
+                          text: 'Cancel',
+                          textColor: themeColor.tertiary,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          onNotificationTypeChanged(pickedNotificationType);
+                          context.pop();
+                        },
+                        child: BodySmall(
+                          text: 'Ok',
+                          textColor: themeColor.tertiary,
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+```
+
+---
+
+### Step 39: Add time selection dialog
+
+In Notification selection widget, if notification type in not off then, user will have option to select time. default time will be 8:00 AM.
+
+In the widget, instead of just on Inkwell for Notification Option Text, create a row and add conditional another InkWell,
+
+```dart
+Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      showDialogBox(
+                        context,
+                        pickedNotificationType,
+                        themeColor,
+                      );
+                    },
+                    child: BodyLarge(
+                      text: notificationDisplayText,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 24,
+                  ),
+                  if (selectedNotificationType != NotificationType.off)
+                    InkWell(
+                      onTap: () {
+                        showTimePicker(
+                            context: context,
+                            initialTime: selectedTime,
+                            builder: (BuildContext context, Widget? child) {
+                              return Theme(
+                                  data: ThemeData(
+                                    colorScheme: ColorScheme.dark(
+                                      primary: themeColor.tertiary,
+                                      surface: themeColor.tertiaryContainer,
+                                      onSurface: themeColor.onPrimaryContainer,
+                                    ),
+                                  ),
+                                  child: child!);
+                            }).then(
+                          (value) {
+                            onSelectedTimeChanged(
+                              value ?? const TimeOfDay(hour: 8, minute: 00),
+                            );
+                          },
+                        );
+                      },
+                      child: BodyLarge(
+                        text: selectedTimeDisplayText,
+                      ),
+                    )
+                ],
+              )
+```
+
+### Step 40: Create subtask class
+
+Crate a model class for subTask to store subTaskName and is completed status.
+
+```dart
+class Subtask {
+  String subTaskName;
+  bool isCompleted;
+
+  Subtask({
+    required this.subTaskName,
+    this.isCompleted = false,
+  });
+
+  void updateSubtaskName(String newName) {
+    subTaskName = newName;
+  }
+
+  void updateSubtaskStatus(bool value) {
+    isCompleted = value;
+  }
+}
+```
+
+---
+
+### Step 41: Create a widget to add subtask
+
+Add a widget that will allow user to add subtasks.
+
+_add_subtask_widget.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/global_widgets/text_widgets.dart';
+
+import '../../../data/models/subtask.dart';
+
+class AddSubtaskWidget extends StatelessWidget {
+  const AddSubtaskWidget({
+    super.key,
+    required this.iconDate,
+    required this.subTaskList,
+    required this.labelText,
+    required this.subTaskHintText,
+    required this.subtaskEditingController,
+    required this.onSubtaskListChanged,
+  });
+
+  final IconData iconDate;
+  final String labelText;
+  final String subTaskHintText;
+  final List<Subtask> subTaskList;
+  final ValueChanged<List<Subtask>> onSubtaskListChanged;
+  final TextEditingController subtaskEditingController;
+
+  @override
+  Widget build(BuildContext context) {
+    var themeColor = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                iconDate,
+                size: 32,
+              ),
+              const SizedBox(
+                width: 32,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MediumTitle(
+                      text: labelText,
+                      textColor: themeColor.tertiary,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: subtaskEditingController,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onPrimaryContainer,
+                            ),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              hintText: subTaskHintText,
+                              contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            if (subtaskEditingController.text.isNotEmpty) {
+                              subTaskList.add(
+                                Subtask(
+                                    subTaskName: subtaskEditingController.text),
+                              );
+                              subtaskEditingController.text = '';
+                              onSubtaskListChanged(subTaskList);
+                            }
+                          },
+                          icon: const Icon(Icons.add),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          // TODO: Add Subtask Display
+        ],
+      ),
+    );
+  }
+}
+```
+
+---
+
+### Step 42: Create SubTask tile widget
+
+Create a widget to show each subtask tile.
+
+_subtask_tile.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+import '../../../core/global_widgets/text_widgets.dart';
+import '../../../data/models/subtask.dart';
+
+class SubtaskTile extends StatefulWidget {
+  const SubtaskTile(
+      {super.key, required this.subtask, required this.onSubtaskDeleted});
+
+  final Subtask subtask;
+  final ValueChanged<Subtask> onSubtaskDeleted;
+
+  @override
+  State<SubtaskTile> createState() => _SubtaskTileState();
+}
+
+class _SubtaskTileState extends State<SubtaskTile> {
+  bool isEditingModeOn = false;
+  late TextEditingController subtaskEditController;
+
+  @override
+  void initState() {
+    super.initState();
+    subtaskEditController =
+        TextEditingController(text: widget.subtask.subTaskName);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: isEditingModeOn
+          ? TextField(
+              controller: subtaskEditController,
+            )
+          : BodyLarge(text: widget.subtask.subTaskName),
+      leading: IconButton(
+        onPressed: () {
+          setState(() {
+            isEditingModeOn = !isEditingModeOn;
+          });
+        },
+        icon: Icon(isEditingModeOn ? Icons.close : Icons.edit),
+      ),
+      trailing: isEditingModeOn
+          ? IconButton(
+              onPressed: () {
+                setState(() {
+                  widget.subtask.updateSubtaskName(subtaskEditController.text);
+                  isEditingModeOn = false;
+                });
+              },
+              icon: const Icon(Icons.check),
+            )
+          : IconButton(
+              onPressed: () {
+                widget.onSubtaskDeleted(widget.subtask);
+              },
+              icon: const Icon(Icons.delete),
+            ),
+    );
+  }
+}
+```
+
+---
+
+### Step 43: Add Subtask tile in main column
+
+```dart
+for (var subtask in subTaskList)
+            SubtaskTile(
+              subtask: subtask,
+              onSubtaskDeleted: (Subtask value) {
+                subTaskList.remove(value);
+                onSubtaskListChanged(subTaskList);
+              },
+            ),
+
+```
+
+---
+
+### Step 44: Add subtask widget to add task screen
+
+Create new TextEditingController for subtask, just like we added for task name and description
+
+```dart
+late TextEditingController subTaskEditingController;
+```
+
+Now, initialize it
+
+```dart
+@override
+  void initState() {
+    super.initState();
+    taskNameController = TextEditingController();
+    taskDescController = TextEditingController();
+    subTaskEditingController = TextEditingController();
+  }
+```
+
+Add one more variable for list of Subtask type.
+
+```dart
+List<Subtask> subTaskList = [];
+```
+
+Now, finally add subtask widget at the end.
+
+```dart
+AddSubtaskWidget(
+              iconDate: Icons.format_list_bulleted,
+              subTaskList: subTaskList,
+              labelText: 'Sub Tasks',
+              subTaskHintText: 'Add a Subtask',
+              subtaskEditingController: subTaskEditingController,
+              onSubtaskListChanged: (List<Subtask> value) {
+                setState(() {
+                  subTaskList = value;
+                });
+              },
+            ),
+```
+
+---
+
+### Step 45: Create basic model class for Task
+
+Create a basic task model class with base constructor to add a new task -
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/utils/notification_function.dart';
+import 'package:simply_do/core/utils/priority_function.dart';
+import 'package:simply_do/core/utils/repeat_function.dart';
+import 'package:simply_do/data/models/subtask.dart';
+
+class Task {
+  final int? taskKey;
+  final String taskName;
+  final String? taskDescription;
+  final DateTime? dueDate;
+  final PriorityOptions priorityType;
+  final RepeatType repeatType;
+  final List<DaysOfWeek> customRepeatDays;
+  final NotificationType notificationType;
+  final TimeOfDay notificationTime;
+  final List<Subtask> subtasks;
+  final bool isCompleted;
+  final DateTime? lastCompleted;
+  final DateTime? nextDueDate;
+
+  const Task(
+      {this.taskKey,
+      required this.taskName,
+      this.taskDescription,
+      this.dueDate,
+      required this.priorityType,
+      required this.repeatType,
+      required this.customRepeatDays,
+      required this.notificationType,
+      required this.notificationTime,
+      required this.subtasks,
+      this.isCompleted = false,
+      this.lastCompleted,
+      this.nextDueDate,
+      });
+
+
+}
+
+```
+
+---
+
+### Step 46: Create Function to manage dueDate if repeat type is not once
+
+Here is a small thing that we want, if user selects repeat type anything other than once, in that case, we need to have a due date to start with, so if user has already selected it, then good, otherwise, we will automatically assign it today's date. For that, all we have to do is make some changes in add task form, where we are adding repeat selection widget -
+
+```dart
+RepeatSelectionWidget(
+              iconData: Icons.replay,
+              labelText: 'Set Repeat',
+              repeatDisplayText: getRepeatTypeString(selectedRepeatType),
+              selectedRepeatType: selectedRepeatType,
+              customDays: selectedCustomDays,
+              setSelectedRepeatType: (value) {
+                setState(() {
+                  selectedRepeatType = value;
+                  if (selectedRepeatType != RepeatType.once) {
+                    dueDate ??= DateTime.now();
+                  }
+                });
+              },
+              setCustomDays: (value) {
+                selectedCustomDays = value;
+              },
+            ),
+```
+
+---
+
+### Step 47: Create getNextDueDate Function
+
+Create a function to get next due date based on due date and repeatType except for Custom days -
+
+```dart
+DateTime? getNextDueDate() {
+    if (repeatType == RepeatType.once) {
+      return null;
+    } else if (repeatType == RepeatType.daily) {
+      return dueDate!.add(const Duration(days: 1));
+    } else if (repeatType == RepeatType.weekly) {
+      return dueDate!.add(const Duration(days: 7));
+    } else if (repeatType == RepeatType.monthly) {
+      return getNextMonth(dueDate!);
+    } else if (repeatType == RepeatType.yearly) {
+      return DateTime(dueDate!.year + 1, dueDate!.month, dueDate!.day,
+          dueDate!.hour, dueDate!.minute, dueDate!.second);
+    } else if (repeatType == RepeatType.custom) {
+      // TODO: Function to get next date based on custom days
+    }
+  }
+```
+
+---
+
+### Step 48: Create getDueDate if repeat type is custom
+
+A function to get next due date if the custom days are selected -
+
+```dart
+DateTime? getCustomNextDay(DateTime currentDate) {
+    if (customRepeatDays.isEmpty) {
+      return null;
+    }
+
+    List<int> customWeekdaysList = [];
+
+    for (var day in customRepeatDays) {
+      int dayIndex = daysToWeekday[day]!;
+      customWeekdaysList.add(dayIndex);
+    }
+
+    DateTime nextDay = currentDate.add(const Duration(days: 1));
+
+    while (!customWeekdaysList.contains(nextDay.weekday)) {
+      nextDay = nextDay.add(const Duration(days: 1));
+    }
+
+    return nextDay;
+  }
+
+  Map<DaysOfWeek, int> daysToWeekday = {
+    DaysOfWeek.monday: 1,
+    DaysOfWeek.tuesday: 2,
+    DaysOfWeek.wednesday: 3,
+    DaysOfWeek.thursday: 4,
+    DaysOfWeek.friday: 5,
+    DaysOfWeek.saturday: 6,
+    DaysOfWeek.sunday: 7
+  };
+```
+
+---
+
+### Step 49: Complete task class
+
+We will add more functions later like onTaskCompleted, named constructor and others, but for now to create a new task, this is complete class.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/core/utils/notification_function.dart';
+import 'package:simply_do/core/utils/priority_function.dart';
+import 'package:simply_do/core/utils/repeat_function.dart';
+import 'package:simply_do/data/models/subtask.dart';
+
+class Task {
+  final int? taskKey;
+  final String taskName;
+  final String? taskDescription;
+  final DateTime? dueDate;
+  final PriorityOptions priorityType;
+  final RepeatType repeatType;
+  final List<DaysOfWeek> customRepeatDays;
+  final NotificationType notificationType;
+  final TimeOfDay notificationTime;
+  final List<Subtask> subtasks;
+  final bool isCompleted;
+  final DateTime? lastCompleted;
+  DateTime? nextDueDate;
+
+  Task({
+    this.taskKey,
+    required this.taskName,
+    this.taskDescription,
+    this.dueDate,
+    required this.priorityType,
+    required this.repeatType,
+    required this.customRepeatDays,
+    required this.notificationType,
+    required this.notificationTime,
+    required this.subtasks,
+    this.isCompleted = false,
+    this.lastCompleted,
+  }) {
+    nextDueDate = getNextDueDate();
+  }
+
+  DateTime? getNextDueDate() {
+    if (repeatType == RepeatType.once) {
+      return null;
+    } else if (repeatType == RepeatType.daily) {
+      return dueDate!.add(const Duration(days: 1));
+    } else if (repeatType == RepeatType.weekly) {
+      return dueDate!.add(const Duration(days: 7));
+    } else if (repeatType == RepeatType.monthly) {
+      return getNextMonth(dueDate!);
+    } else if (repeatType == RepeatType.yearly) {
+      return DateTime(dueDate!.year + 1, dueDate!.month, dueDate!.day,
+          dueDate!.hour, dueDate!.minute, dueDate!.second);
+    } else if (repeatType == RepeatType.custom) {
+      return getCustomNextDay(dueDate!);
+    }
+    return null;
+  }
+
+  // Utils Functions
+
+  DateTime? getCustomNextDay(DateTime currentDate) {
+    if (customRepeatDays.isEmpty) {
+      return null;
+    }
+
+    List<int> customWeekdaysList = [];
+
+    for (var day in customRepeatDays) {
+      int dayIndex = daysToWeekday[day]!;
+      customWeekdaysList.add(dayIndex);
+    }
+
+    DateTime nextDay = currentDate.add(const Duration(days: 1));
+
+    while (!customWeekdaysList.contains(nextDay.weekday)) {
+      nextDay = nextDay.add(const Duration(days: 1));
+    }
+
+    return nextDay;
+  }
+
+  Map<DaysOfWeek, int> daysToWeekday = {
+    DaysOfWeek.monday: 1,
+    DaysOfWeek.tuesday: 2,
+    DaysOfWeek.wednesday: 3,
+    DaysOfWeek.thursday: 4,
+    DaysOfWeek.friday: 5,
+    DaysOfWeek.saturday: 6,
+    DaysOfWeek.sunday: 7
+  };
+
+  DateTime getNextMonth(DateTime currentDate) {
+    int year = currentDate.year;
+    int month = currentDate.month + 1;
+    int day = currentDate.day;
+
+    if (month > 12) {
+      month = 1;
+      year++;
+    }
+
+    int nextMonthLastDay = DateTime(year, month, 1, 0).day;
+
+    if (day > nextMonthLastDay) {
+      day = nextMonthLastDay;
+    }
+
+    return DateTime(year, month, day, currentDate.hour, currentDate.minute,
+        currentDate.second);
+  }
+}
+
+```
+
+---
+
+### Step 50: Initialize database
+
+import sqflite and add base database class
+
+```
+flutter pub add sqflite
+```
+
+In database folder create a new file named database.dart
+
+```dart
+class DbHelper {
+  static Database? _db;
+  static final DbHelper instance = DbHelper._constructor();
+  DbHelper._constructor();
+
+}
+```
+
+---  
+
+### Step 51: Create String variables for all the parameters in task model
+
+Within same DbHelper class, after constructor, create variables to store string value for table name and all teh columns name for database.
+
+```dart
+final String _taskTableName = 'task_table';
+
+  final String _taskKey = 'task_key';
+  final String _taskName = 'task_name';
+  final String _taskDesc = 'task_desc';
+  final String _taskDueDate = 'task_due_date';
+  final String _taskPriority = 'task_priority';
+  final String _taskRepeatType = 'task_repeat_type';
+  final String _taskRepeatDays = 'task_repeat_days';
+  final String _taskNotificationType = 'task_notification_type';
+  final String _taskNotificationTime = 'task_notification_time';
+  final String _subTasks = 'sub_tasks';
+  final String _isCompleted = 'is_completed';
+  final String _taskLastDate = 'task_last_date';
+  final String _taskNextDate = 'task_next_date';
+```
+
+---  
+
+### Step 52: Create
+
+### Repeat to json String
+
+Create function to add subtask to json string.
+
+---
+
+### Notifications to json String
+
+Create function to add subtask to json string.
+
+---
+
+### Subtasks to json String
 
 Create function to add subtask to json string.
 
@@ -1194,15 +3065,9 @@ Create a named constructor for class that will take map as input and add a new c
 
 ---
 
-### Create task_state.dart
-
-Create task state and functions to add, delete and update functions.
-
----
-
 ### Saving and leaving add task
 
-Create function for saving task by checking task mame and leaving the page
+Create function for saving task by checking task name and leaving the page
 
 ---
 
@@ -1212,9 +3077,15 @@ Create future builder to show all task in my day(for now).
 
 ---
 
-### Create task tile 
+### Create task tile
 
 Create task_tile.dart in widgets folder to show each task with drag-able widget.
+
+---
+
+### Create functions for task-tile dragging
+
+Create functions and UI for dragging task tile - edit and delete.
 
 ---
 
@@ -1227,18 +3098,6 @@ Create a new screen for edit task and add it to constant and routes.
 ### Create edit_task UI
 
 Create user-interface for edit task.
-
----
-
-### Create functions for task-tile dragging
-
-Create functions and UI for dragging task tile - edit and delete.
-
----
-
-### Set functions for each task screen
-
-Create functions to show tasks for My Day, Planned, All, Completed.
 
 ---
 
@@ -1266,6 +3125,30 @@ Create function if user marks a task not complete.
 
 ---
 
+### Set functions for My Day Screen
+
+Create functions to show tasks in the screen
+
+---
+
+### Set functions for Planned Screen
+
+Create functions to show tasks in the screen - date, wise
+
+---
+
+### Set functions for All Tasks Screen
+
+Create functions to show tasks in the screen
+
+---
+
+### Set functions for Completed Screen
+
+Create functions to show tasks in the screen
+
+---
+
 ### Create a timelineAction map
 
 Create a timeline action map to store different task for timeline
@@ -1273,14 +3156,14 @@ Create a timeline action map to store different task for timeline
 - taskAdded
 - taskDeleted
 - taskCompleted
-- taskIncompleted
+- taskNotCompleted
 - allTaskCompleted(will be used later with time)
 
 ---
 
 ### Create timeline modal class
 
-Create a modal class for timeline to store 
+Create a modal class for timeline to store
 
 - date
 - time
@@ -1290,7 +3173,7 @@ Create a modal class for timeline to store
 
 ### Create a timeline database
 
-Create another database for storing timelineAction - 
+Create another database for storing timelineAction -
 
 ---
 
@@ -1322,7 +3205,7 @@ Create a timeline tile to show the timeline date-wise
 
 Add a task completion modal class to store parameters for it.
 
-### Create mapping function 
+### Create mapping function
 
 Create a mapping function to convert task completion modal to map
 
@@ -1334,11 +3217,25 @@ Create a constructor to create task completion modal class from map
 
 Create function for adding and removing task from completion.
 
-### Function for 100% current streak
+### Functions for 100% Completion Streaks
 
 Create a function for finding out 100% current Streak
 
-### Function for 100% max streak
+### Function for Average
+
+### Functions for Productivity
+
+### Create base settings screen
+
+### Settings sub-page Account
+
+### Settings sub-page Notifications
+
+### Settings sub-page Subscriptions
+
+### Settings sub page Database
+
+### Settings sub page Support
 
 ###
 
@@ -1393,19 +3290,3 @@ Create a function for finding out 100% current Streak
 ###
 
 ###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-###
-
-
