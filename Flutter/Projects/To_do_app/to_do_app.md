@@ -108,6 +108,8 @@ lib
 - app.dart
 - main.dart
 
+![alt text](image.png)
+
 _Note:- .dart files are dart files, but all the others are folders and sub-folder._
 
 Now, you have created the folder structure, it's time to know about their use -
@@ -167,7 +169,69 @@ Now we have 9 colors in total:
 - foregroundSecondary = #D9D9D9
 - foregroundTertiary = rgb 168, 168, 168
 
+Besides these, you are also going to need some highlight colors for specific uses. In general, you only have three highlight colors - Red, Yellow or Orange and Green. But, you can obviously add more based on your needs.
+
+For this app, we have four highlight colors.
+
+- highlightRed = #C50000
+- highlightOrange = #C79C00
+- highlightGreen = #3DC000
+- highlightGolden = rgb 216, 170, 17
+
+Now we have all the colors that we need for our app(at least for our default theme). It's time to create a constant file and store them in a way that we can use it anywhere we need.
+
+In constants folder, create a new dart file named - 'colors.dart'.
+
+First of all, let's import `dart:ui` to access Color data type.
+
+```dart
+import 'dart:ui';
+```
+
+Then we will create first abstract class to store all of our Dark Theme One Colors.(You can change the name based on your preference).
+
+```dart
+final class DarkThemeOneColors {
+  static Color accentPrimary = const Color(0xff6735AC);
+  static Color accentSecondary = const Color(0xff7E46D9);
+  static Color accentTertiary = const Color(0xff9180F9);
+  static Color backgroundPrimary = const Color(0xff1D1C2C);
+  static Color backgroundSecondary = const Color(0xff34344C);
+  static Color backgroundTertiary = const Color.fromARGB(255, 35, 37, 53);
+  static Color foregroundPrimary = const Color.fromARGB(255, 236, 245, 255);
+  static Color foregroundSecondary = const Color(0xffD9D9D9);
+  static Color foregroundTertiary = const Color.fromARGB(255, 168, 168, 168);
+}
+```
+
+Now, we will create another abstract class to store highlight colors.
+
+```dart
+final class HighlightColors {
+  static Color highlightRed = const Color(0xffC50000);
+  static Color highlightOrange = const Color(0xffC79C00);
+  static Color highlightGreen = const Color(0xff3DC000);
+  static Color highlightGolden = const Color.fromARGB(255, 216, 170, 17);
+}
+```  
+
+*Why use static keyword for variables?*
+*'static' keyword is used for those variables or methods which belong to the class and not to the instance. Which means, you can directly access them using class name(like `DarkThemeOneColors.accentPrimary`)*  
+
+*Why use const keyword?*
+*'const' keywords are used in the places where values are known and fixed during the compilation of the app. This helps with optimizing the performance of the app because the compiler can make certain optimizations when it knows that a value will not change.*
+
+*What is `Color(0xff3DC000)`?*
+*This is a base constructor to initialize a variable of Color data type. It takes hexadecimal value as a parameter. '0x' means it's a hexadecimal value, 'ff' stands for opacity(ff means 100% opaque, 00 means 100% transparent), '3D' is value of red color(61), 'C0' is value of green color(192), and '00' is value of blue(00)*
+
+*What is `Color.fromARGB(255, 216, 170, 17)`?*
+*This is named constructor for same color class which is used to initialize Color variable based on ARGB values(alpha, red, green, blue).*
+
 ---
+
+## Step 6:- App Default Theme
+
+Now that we know what colors we are going to use in our app, it's time to 
 
 # Add Task (Step 11 - 20).
 
