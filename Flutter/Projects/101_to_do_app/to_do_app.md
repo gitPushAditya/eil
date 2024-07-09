@@ -52,7 +52,7 @@
   - Database - Manage All Data, Task Data, Clear Completed Task, Clear Timeline, Clear Analytics, Download Data
   - Support - Contact, Tutorial, Report a bug.
 
-## ![alt text](<App Wireframe.png>)
+![alt text](images/app_wireframe.png)
 
 ## Step 3:- New Flutter Project.
 
@@ -108,7 +108,7 @@ lib
 - app.dart
 - main.dart
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 _Note:- .dart files are dart files, but all the others are folders and sub-folder._
 
@@ -405,7 +405,7 @@ class AppState extends ChangeNotifier {
 }
 ```
 
-To get data from here, we will use - 
+To get data from here, we will use -
 
 ```dart
 Provider.of<AppState>(context).displayUserName;
@@ -413,19 +413,18 @@ Provider.of<AppState>(context).isSubscribed;
 Provider.of<AppState>(context).selectedTheme;
 ```
 
-To update data - 
+To update data -
 
 ```dart
 Provider.of<AppState>(context, listen:false).updateUserName('Name of User');
 Provider.of<AppState>(context, listen:false).updateSubscription(true);
 Provider.of<AppState>(context, listen:false).updateTheme(themeName);
 ```
-  
-*When to use listen:false?*
-*You want to use listen false where you only want to access some data or function but noe want to watch for that data changing in real time. When you want to look for data changing in real time, don't use listen:false, default is true.*
+
+_When to use listen:false?_
+_You want to use listen false where you only want to access some data or function but noe want to watch for that data changing in real time. When you want to look for data changing in real time, don't use listen:false, default is true._
 
 For eg. We want to look for any changes in display name or, subscription status or selected theme, that's why we are not using listen: false, but in second scenario, we are only accessing functions to update data, these functions won't change so we don't need to listen to them.
-
 
 # Add Task (Step 11 - 20).
 
