@@ -213,25 +213,219 @@ final class HighlightColors {
   static Color highlightGreen = const Color(0xff3DC000);
   static Color highlightGolden = const Color.fromARGB(255, 216, 170, 17);
 }
-```  
+```
 
-*Why use static keyword for variables?*
-*'static' keyword is used for those variables or methods which belong to the class and not to the instance. Which means, you can directly access them using class name(like `DarkThemeOneColors.accentPrimary`)*  
+_Why use static keyword for variables?_
+_'static' keyword is used for those variables or methods which belong to the class and not to the instance. Which means, you can directly access them using class name(like `DarkThemeOneColors.accentPrimary`)_
 
-*Why use const keyword?*
-*'const' keywords are used in the places where values are known and fixed during the compilation of the app. This helps with optimizing the performance of the app because the compiler can make certain optimizations when it knows that a value will not change.*
+_Why use const keyword?_
+_'const' keywords are used in the places where values are known and fixed during the compilation of the app. This helps with optimizing the performance of the app because the compiler can make certain optimizations when it knows that a value will not change._
 
-*What is `Color(0xff3DC000)`?*
-*This is a base constructor to initialize a variable of Color data type. It takes hexadecimal value as a parameter. '0x' means it's a hexadecimal value, 'ff' stands for opacity(ff means 100% opaque, 00 means 100% transparent), '3D' is value of red color(61), 'C0' is value of green color(192), and '00' is value of blue(00)*
+_What is `Color(0xff3DC000)`?_
+_This is a base constructor to initialize a variable of Color data type. It takes hexadecimal value as a parameter. '0x' means it's a hexadecimal value, 'ff' stands for opacity(ff means 100% opaque, 00 means 100% transparent), '3D' is value of red color(61), 'C0' is value of green color(192), and '00' is value of blue(00)_
 
-*What is `Color.fromARGB(255, 216, 170, 17)`?*
-*This is named constructor for same color class which is used to initialize Color variable based on ARGB values(alpha, red, green, blue).*
+_What is `Color.fromARGB(255, 216, 170, 17)`?_
+_This is named constructor for same color class which is used to initialize Color variable based on ARGB values(alpha, red, green, blue)._
 
 ---
 
 ## Step 6:- App Default Theme
 
-Now that we know what colors we are going to use in our app, it's time to 
+Now that we know what colors we are going to use in our app, it's time to create a default theme for the app.
+
+_These methods are defined in a way that you can have more than one theme in future and user will have options to choose._
+
+Create a new dart file in themes folder with name 'dark_themes.dart'.
+
+We will use this file to store all the dark themes(for now, only one).
+
+Within it, create a class and static final variable of type ThemeData named 'darkThemeOne'.
+
+```dart
+import 'package:flutter/material.dart';
+import '../../core/constants/colors.dart';
+
+class DarkThemes {
+  static final ThemeData darkThemeOne = ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme.fromSeed(
+        seedColor: DarkThemeOneColors.accentPrimary,
+        brightness: Brightness.dark,
+        primary: DarkThemeOneColors.accentPrimary,
+        secondary: DarkThemeOneColors.accentSecondary,
+        tertiary: DarkThemeOneColors.accentTertiary,
+        onPrimaryContainer: DarkThemeOneColors.foregroundPrimary,
+        onSecondaryContainer: DarkThemeOneColors.foregroundSecondary,
+        onTertiaryContainer: DarkThemeOneColors.foregroundTertiary,
+        primaryContainer: DarkThemeOneColors.backgroundPrimary,
+        secondaryContainer: DarkThemeOneColors.backgroundSecondary,
+        tertiaryContainer: DarkThemeOneColors.backgroundTertiary),
+  );
+}
+```
+
+Now create another file in same themes folder named 'app_themes.dart'.
+
+This will be the access point for all the themes in the app. User will select theme from here and later that will be saved in the app memory(shared preferences).
+
+Within 'app_themes.dart', create a class and store first theme data.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/ui/themes/dark_theme.dart';
+
+final class AppThemes {
+  static ThemeData darkThemeOne = DarkThemes.darkThemeOne;
+}
+```
+
+Now, to access this theme, all we have to do is write `AppThemes.darkThemeOne`.
+
+---
+
+## Step 7:- Saving Basic User Data
+
+Now we know how to add theme to our app, but we can't just hard code it. We have to implement a way so that in future when we have more than one themes, user can select it and store the selection in device memory.
+
+For that, we are going to use a package called 'shared_preferences'.
+
+First of all, let's add the package by writing -
+
+```
+flutter pub add shared_preferences
+```
+
+Also add provider package by writing -
+
+```
+flutter pub add provider
+```
+
+Now, let's understand what we are about to do - We are going to create a state-manger using Provider package. This will be responsible for managing state of user data in app-wide scope. This manager is going to connect with shared-preferences to store data and retrieve it. Later we will take that data and use it in our UI.
+
+In 'providers' folder, create a new file called 'app_state.dart'. Within it, let's create a class that will extend from ChangeNotifier and describe few variables in it like 'userName', 'subscriptionStatus' and 'selectedTheme'.
+
+We are also going to use shared_preferences to store these values in device memory, but here is the thing, shared_preferences can only store basic data like String, int, bool, list, etc. So, how are we going to store ThemeData in it? For that, we are gonna have to create a function that will take ThemeData, convert it into related string and then we can save that. And another function that can convert it back when we get that from shared_preferences to use it.
+
+In utils folder, create a helper function - 'theme_to_string.dart'
+
+_theme_to_string.dart_
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:simply_do/ui/themes/app_themes.dart';
+
+String themeToString(ThemeData themeData) {
+  if (themeData == AppThemes.darkThemeOne) {
+    return 'darkThemeOne';
+  } else {
+    return 'darkThemeOne';
+  }
+}
+
+ThemeData stringToTheme(String? theme) {
+  if (theme == 'darkThemeOne') {
+    return AppThemes.darkThemeOne;
+  } else {
+    return AppThemes.darkThemeOne;
+  }
+}
+```
+
+First function converts theme into related String value, and second function converts it back to theme, we have default value to avoid any errors. This might not make much sense right now but once we have multiple themes in future, this is going to come in handy.
+
+Now, back to our 'app_state.dart'.
+
+_app_state.dart_
+
+```dart
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simply_do/core/constants/app_data.dart';
+import 'package:simply_do/core/utils/theme_to_string.dart';
+
+class AppState extends ChangeNotifier {
+
+  // Creating late variables, to be initialized later
+  late SharedPreferences _prefs;
+  late String _userName;
+  late bool _subscriptionStatus;
+  late ThemeData _selectedTheme = ThemeData.light();
+
+  // Default constructor of the class
+  AppState() {
+    initializePreferences();
+    _checkSubscription();
+  }
+
+  // A function to initialize all the variables
+  Future<void> initializePreferences() async {
+    _prefs = await SharedPreferences.getInstance();
+    _userName = _prefs.getString(AppData.userName) ?? 'User';
+    _subscriptionStatus = _prefs.getBool(AppData.subscriptionStatus) ?? false;
+    _selectedTheme = stringToTheme(_prefs.getString(AppData.selectedTheme));
+    await _checkSubscription();
+    notifyListeners();
+  }
+
+  // Functions related to user name
+
+  String get userName => _userName;
+
+  String get displayUserName =>
+      userName.length > 15 ? userName.substring(0, 14) : userName;
+
+  Future<void> updateUserName(String name) async {
+    await _prefs.setString(AppData.userName, name);
+    notifyListeners();
+  }
+
+  // Functions related to subscription status
+
+  bool get isSubscribed => _subscriptionStatus;
+
+  Future<void> _checkSubscription() async {
+    // TODO: Check sub from server
+  }
+
+  Future<void> updateSubscription(bool isSubscribed) async {
+    await _prefs.setBool(AppData.subscriptionStatus, isSubscribed);
+    notifyListeners();
+  }
+
+  // Functions related to theme data
+
+  ThemeData get selectedTheme => _selectedTheme;
+
+  Future<void> updateTheme(ThemeData theme) async {
+    await _prefs.setString(AppData.selectedTheme, themeToString(theme));
+    notifyListeners();
+  }
+}
+```
+
+To get data from here, we will use - 
+
+```dart
+Provider.of<AppState>(context).displayUserName;
+Provider.of<AppState>(context).isSubscribed;
+Provider.of<AppState>(context).selectedTheme;
+```
+
+To update data - 
+
+```dart
+Provider.of<AppState>(context, listen:false).updateUserName('Name of User');
+Provider.of<AppState>(context, listen:false).updateSubscription(true);
+Provider.of<AppState>(context, listen:false).updateTheme(themeName);
+```
+  
+*When to use listen:false?*
+*You want to use listen false where you only want to access some data or function but noe want to watch for that data changing in real time. When you want to look for data changing in real time, don't use listen:false, default is true.*
+
+For eg. We want to look for any changes in display name or, subscription status or selected theme, that's why we are not using listen: false, but in second scenario, we are only accessing functions to update data, these functions won't change so we don't need to listen to them.
+
 
 # Add Task (Step 11 - 20).
 

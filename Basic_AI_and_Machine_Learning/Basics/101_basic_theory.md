@@ -149,13 +149,38 @@ When crating a model, you basically divide entire data into three sets -
 
 ### 1. Choosing and training a model
 
+There are some pre-built models that you can choose based on the type of dat you are working with - 
+
+- Structured Data - CatBoots, Random Forest
+- Unstructured Data - Deep Learning, Transfer Learning 
+
+Once we have decided our model, it's time to train them using training data. 
+
+Based on the amount of data, this can take a long time. Also models like Deep Learning and Transfer Learning take longer time. Your priorities should be get the most possibly accuracy in least time. 
+
+For eg. If one model is taking way longer than the other one and the difference between accuracy is only few percent, then in most cases, you would prefer to go with the one that takes least time.
+
+*Some models solve some problems better than the others, it's okay to start small and try out things.*
+
 ### 2. Tuning a model
+
+Once training in complete, it's time to tune your model. This can be done on validation data or training data.
+
+This process basically involves tweaking a few parameters to make your model to more precise.
 
 ### 3. Model comparison
 
+This is when we feed model test problem to see how well they will perform in real world. This could have three types of results - 
 
+- Under fitting - Performing very poorly on test data. 
+- Balanced - Performance is similar as training and validation.
+- Over fitting - Performance is way better than the training. This happens because of data leakage. 
 
 ## 6. Experiment:-
 
 ![alt text](image-7.png)
+
+Once you have a working model, that i not the end of the road. You should keep experimenting with other models, or inputs to see if your model gets better.
+
+---
 
