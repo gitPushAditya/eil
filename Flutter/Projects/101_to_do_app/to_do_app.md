@@ -426,7 +426,129 @@ _You want to use listen false where you only want to access some data or functio
 
 For eg. We want to look for any changes in display name or, subscription status or selected theme, that's why we are not using listen: false, but in second scenario, we are only accessing functions to update data, these functions won't change so we don't need to listen to them.
 
-# Add Task (Step 11 - 20).
+---
+
+## Step 8:- Creating Main Screens
+
+Until now, we are just creating a base for our app. But we haven't created anything to show. It's time we change that. In screens folder create 9 files -
+
+- add_task.dart
+- analytics.dart
+- edit_task.dart
+- premium.dart
+- settings.dart
+- support.dart
+- tasks.dart
+- timeline.dart
+- tutorial.dart
+
+Now, let's create a basic file for all of these screens.
+
+While creating a screen or widget in flutter, we have two options.
+
+1. Create a StatelessWidget : A stateless widget always maintains it's state, which means it won't show any changes in real time. We won't have option to rebuild it in realtime(unless we use providers which we only use for data that is needed app-wide).
+2. Create a StatefulWidget : A stateful widget has option to setState which can rebuild the widget to change data in real time.
+
+For those screens which change, a good practice it to use Stateful widget as main screen while using Stateless widgets for all the smaller widgets inside it, and then pass a function to main widget to show the changes.
+
+It's okay if this doesn't make any sense right now, you will get used to it as we use it. For now, just know that some of our screens will be stateful and others stateless, we can obviously change it later if we need to.
+
+- tasks - stateful
+- timeline - stateless
+- analytics - stateful
+- settings - stateless
+- premium - stateless
+- tutorial - stateless
+- support - stateless
+- add_task - stateful
+- edit_task - stateful
+
+Eg. Creating a Stateful Widget
+
+_tasks.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+Eg. Creating a Stateless Widget
+
+_settings.dart_
+
+```dart
+import 'package:flutter/material.dart';
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+```
+
+Now, use these to create all the other screens.
+
+---
+
+## Step 9:- Routing
+
+Now we have all the screens that we need in our app(for now).
+
+It's time we create routing(a way we can navigate from one screen to another).
+
+For that, we are going to use another package called 'go_router'.
+
+Let's add it in terminal -
+
+```
+flutter pub add go_router
+```
+
+Before adding any screens to routes, let's create a class to define String variables for all the screens. This will prevent us from making typos(one mistake and you will navigate to a page that doesn't exist).
+
+In constants folder, create a new file named - 'app_screens.dart'. Within it, store String values for all the pages -
+
+```dart
+final class AppScreens {
+  static const String tasks = '/';
+  static const String timeline = '/timeline';
+  static const String analytics = '/analytics';
+  static const String settings = '/settings';
+  static const String premium = '/premium';
+  static const String tutorial = '/tutorial';
+  static const String support = '/support';
+  static const String addTask = '/add-task';
+  static const String editTask = '/edit-task';
+}
+```
+
+To access these variables, we only have to use - AppScreens.timeline or AppScreen.tasks, etc.
+
+_Note: You can change the name but don't change the format. Default screen will always be represented as '/'._
+
+## Now, remember we have a 'routes.dart' file in config folder. Inside that
+
+## Step 10:- Executing App
+
+---
+
+# Tasks Page (Step 11 - 20).
 
 ---
 
