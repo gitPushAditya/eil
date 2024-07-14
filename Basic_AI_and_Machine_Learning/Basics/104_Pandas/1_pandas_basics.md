@@ -228,3 +228,47 @@ car_sales[car_sales["Make"] == "Toyota"]
 ```
 
 We want to show car sales where Make is Toyota
+
+### To compare two columns
+
+```python
+pd.crosstab(car_sales["Make"], car_sales["Doors"])
+```
+
+This  will return data something like this - |
+![alt text](image-1.png)
+
+As you can see, it shows how many car of which make contains how many doors.
+
+### To run function on a group
+
+car_sales.groupby(["Make]).mean()
+
+This will return - 
+
+![alt text](image-2.png)
+
+### To get a line graph plot
+
+```python
+%matplotlib inline
+import matplotlib.pyplot as plt
+
+car_sales["Odometer (KM)"].plot()
+```
+
+### To create a bar graph hist
+
+```python
+car_sales["Odometer (KM)"].hist()
+```
+
+![alt text](image-3.png)
+
+## Manipulating Data
+
+### To convert price column into int data type
+
+```python
+car_sales["Price"] = car_sales["Price"].str.replace('[\$\, \.]', '', regex = True).astype(int)
+```

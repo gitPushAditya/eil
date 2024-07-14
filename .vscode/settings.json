@@ -1,11 +1,16 @@
 {
   "cSpell.words": [
+    "astype",
+    "crosstab",
     "cupertino",
     "dtypes",
+    "groupby",
     "iloc",
+    "matplotlib",
     "openpyxl",
     "prefs",
     "pubspec",
+    "pyplot",
     "sqflite",
     "upto",
     "Wireframe"
