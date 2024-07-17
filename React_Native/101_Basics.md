@@ -13,7 +13,7 @@ Choose the desired template, usually blank
 ## Install Dependencies
 
 ```
-npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar expo-font axios react-native-dotenv
 ```
 
 ---
