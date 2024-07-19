@@ -419,7 +419,7 @@ This only renders the items in the view.
 Props:
 
 - horizontal = For rendering horizontally, you can add horizontal prop.
-- keyExtractor = {item.key} item.key is default value, if not present then item.id
+- keyExtractor = {item.key} item.key is default value, if not present then item.id, {(item, index) => index.toString()}
 - ItemSeparatorComponent = {<View style={{ height: 16}}/ >}
 - ListEmptyComponent={<Text>No items found</Text>}
 - ListHeaderComponent={<Text style= {style.headerText}>My List </Text>}
