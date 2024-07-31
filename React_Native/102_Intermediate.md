@@ -96,7 +96,7 @@ if (!fontsLoaded) {
 ## Data Persist
 
 ```jsx
-expo install @react-native-async-storage/async-storage
+npx expo install @react-native-async-storage/async-storage
 ```
 
 To save data.
@@ -182,9 +182,38 @@ async function getActivity(){
 }
 ```
 
-Creating a Promise: 
+---
 
+## HOC - High order component
 
+```tsx
+const createStyledText = (fontSize: number, fontFamily: string) => {
+  return ({
+    children,
+    style,
+  }: {
+    children: ReactNode;
+    style?: StyleProp<ViewStyle>;
+  }) => {
+    const theme = useAppTheme();
+
+    return (
+      <Text
+        style={[
+          {
+            fontSize: getFontSize(fontSize),
+            fontFamily,
+            color: theme.foregroundPrimary,
+          },
+          style,
+        ]}
+      >
+        {children}
+      </Text>
+    );
+  };
+};
+```
 
 ## Eject Expo App
 
@@ -195,3 +224,5 @@ npm eject
 ```
 
 Then answer a few questions and it will be converted.
+
+

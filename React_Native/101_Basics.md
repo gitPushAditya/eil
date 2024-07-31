@@ -633,18 +633,18 @@ const { name } = route.params;
 Will place a drawer in the side.
 
 ```
-npm install @react-navigator/drawer
+npx expo install @react-navigation/drawer
 ```
 
 ```
-npm install react-native-gesture-handler react-native-reanimated
+npx expo install react-native-gesture-handler react-native-reanimated
 ```
 
 In babel.config.js
 
 ```js
 plugins: [
-    'react-native-reanimated/plugin`,
+    'react-native-reanimated/plugin',
 ]
 ```
 
@@ -659,7 +659,7 @@ import { createDrawerNavigator } from "@react-navigator/drawer";
 
 const Drawer = createDrawerNavigator();
 
-// Inside NavigationContainer
+ // Inside NavigationContainer
 
 <Drawer.Navigator>
     <Drawer.Screen name="Home" component={HomeScreen}/>
