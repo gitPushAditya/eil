@@ -180,7 +180,7 @@ This will return last 10 rows of the data frame
 
 `car_sales.loc[3]`
 
-This will return the row where value of index column in 3, it could be more than on if provided custom indexes.
+This will return the row where value of index column in 3, it could be more than one if provided custom indexes.
 
 _Create a series with custom index to try:_
 
@@ -339,13 +339,13 @@ car_sales_shuffled = car_sales.sample(frac=1)
 
 _Note: To only shuffle 20%(any percentage) of rows, set frac=0.2_
 
-If you want to fix the index numbering - 
+If you want to fix the index numbering -
 
 ```python
 car_sales_shuffled.reset_index(drop = True, inplace = True)
 ```
 
-*drop = True is not going to insert a new column for index.*
+_drop = True is not going to insert a new column for index._
 
 ### Apply lambda function to column
 
