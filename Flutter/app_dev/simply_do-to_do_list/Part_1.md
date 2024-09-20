@@ -79,7 +79,7 @@ flutter pub add shared_preferences path intl flutter_svg go_router flutter_river
 
 If everything is successfull, you can open pubspec.yaml file and there you will see something like this -
 
-![alt text](extra\image2.png)
+![pubspeck.yaml](extra/image2.png)
 
 ## Setting Up main.dart
 
