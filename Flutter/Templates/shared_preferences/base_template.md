@@ -1,64 +1,92 @@
 ```dart
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefHelper {
+class SharedPrefs {
+  // Singleton
 
-  // Save a value to Shared Preferences
+  static final SharedPrefs _instance = SharedPrefs._internal();
 
-  Future<void> saveString(String key, String value) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(key, value);
+  factory SharedPrefs() {
+    return _instance;
   }
 
-  Future<void> saveInt(String key, int value) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(key, value);
+  SharedPrefs._internal();
+
+  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
+
+  // Save Values
+
+  Future<bool> saveString(String key, String value) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.setString(key, value);
   }
 
-  Future<void> saveBool(String key, bool value) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(key, value);
+  Future<bool> saveInt(String key, int value) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.setInt(key, value);
   }
 
+  Future<bool> saveDouble(String key, double value) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.setDouble(key, value);
+  }
 
+  Future<bool> saveBool(String key, bool value) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.setBool(key, value);
+  }
 
+  Future<bool> saveList(String key, List<String> list) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.setStringList(key, list);
+  }
 
-  // Retrieve a value from Shared Preferences
+  // Get Values
 
   Future<String?> getString(String key) async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await this.prefs;
     return prefs.getString(key);
   }
 
   Future<int?> getInt(String key) async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await this.prefs;
     return prefs.getInt(key);
   }
 
+  Future<double?> getDouble(String key) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.getDouble(key);
+  }
+
   Future<bool?> getBool(String key) async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await this.prefs;
     return prefs.getBool(key);
   }
 
-
-
-
-  // Remove a value from Shared Preferences
-
-  Future<void> remove(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(key);
+  Future<List<String>?> getList(String key) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.getStringList(key);
   }
 
+  // Remove a Values
 
+  Future<bool> remove(String key) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.remove(key);
+  }
 
+  // Clear all Values
 
-  // Clear all values from Shared Preferences
+  Future<bool> clear() async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.clear();
+  }
 
-  Future<void> clear() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
+  // Check if contains a Value
+
+  Future<bool> containsKey(String key) async {
+    final SharedPreferences prefs = await this.prefs;
+    return prefs.containsKey(key);
   }
 }
-
 ```
