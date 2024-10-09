@@ -6,7 +6,6 @@
 - Structure of a C Program
 - Installing a C Compiler (GCC, Turbo C, etc.)
 - Writing Your First C Program: "Hello, World!"
-- Compiling and Running C Programs
 
 ## 2. Basic Syntax and Data Types
 
