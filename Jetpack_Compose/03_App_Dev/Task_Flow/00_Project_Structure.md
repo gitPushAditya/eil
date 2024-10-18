@@ -1,0 +1,40 @@
+# Project Structure
+
+- data
+  - datastore
+  - db
+    - dao
+    - database
+    - entity
+    - mapper
+    - migration
+  - mapper
+  - network
+    - client
+    - error
+    - model
+    - service
+  - repository
+- di
+  - components
+  - modules
+  - scopes
+- domain
+  - model
+  - repository
+  - usecases
+- global
+  - constants
+  - utils
+  - viewmodel
+- notification
+- ui
+  - common
+  - navigation
+  - screens
+  - theme
+    - color
+    - shape
+    - themes
+    - type
+- workers
