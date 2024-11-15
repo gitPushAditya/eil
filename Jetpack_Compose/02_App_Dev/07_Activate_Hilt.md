@@ -19,3 +19,12 @@ class DrinkUpApp : Application() {
 
 Now we need to add this file to `Manifest` so that app can recognise it. 
 
+```xml
+<application
+        android:enableOnBackInvokedCallback="true"
+        android:name=".DrinkUpApp"
+....
+....
+/>
+```
+

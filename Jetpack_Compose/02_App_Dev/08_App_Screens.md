@@ -62,3 +62,23 @@ fun HomeScreen() {
 
 ---
 
+
+## Define Constants
+
+To make all the screens easily accessible, we will create a sealed class in `constants`.
+
+```kotlin
+sealed class AppScreens(val route: String){
+	object IntroScreen : AppScreens("intro_screen")
+	object HomeScreen : AppScreens("home_screen")
+	object TimelineScreen : AppScreens("timeline_screen")
+	object StatisticsScreen : AppScreens("statistics_screen")
+	object PreferencesScreen : AppScreens("preferences_screen")
+	object SettingsScreen : AppScreens("settings_screen")
+	object NotificationScreen : AppScreens("notification_screen")
+	object ThemeScreen : AppScreens("theme_screen")
+	object AccountScreen : AppScreens("account_screen")
+	object AboutScreen : AppScreens("about_screen")
+}
+```
+
