@@ -1,110 +1,9 @@
 # Implementations
 
-## Project Level Gradle
-
-```
-plugins {
-        // By Default
-	alias(libs.plugins.android.application) apply false
-	alias(libs.plugins.kotlin.android) apply false
-	alias(libs.plugins.kotlin.compose) apply false
-
-        // Ksp - Kotlin symbol processing - kotlin compiler
-	id("com.google.devtools.ksp") version "2.0.20-1.0.24" apply false
-
-        // dagger-hilt - dependency injections
-	id("com.google.dagger.hilt.android") version "2.51.1" apply false
-
-        // serializer
-	id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0" apply false
-}
-```
-
----
-
-## App Level Gradle
+## Project Gradle -
 
 ```kotlin
-plugins {
-	alias(libs.plugins.android.application)
-	alias(libs.plugins.kotlin.android)
-	alias(libs.plugins.kotlin.compose)
-
-	id("com.google.devtools.ksp") version "2.0.20-1.0.24"
-	id("com.google.dagger.hilt.android") version "2.51.1"
-	id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
-}
-
-//...
-
-compileOptions {
-		sourceCompatibility = JavaVersion.VERSION_17
-		targetCompatibility = JavaVersion.VERSION_17
-	}
-	kotlinOptions {
-		jvmTarget = "17"
-	}
-
-//...
-
-dependencies {
-
-	implementation(libs.androidx.core.ktx)
-	implementation(libs.androidx.lifecycle.runtime.ktx)
-	implementation(libs.androidx.activity.compose)
-	implementation(platform(libs.androidx.compose.bom))
-	implementation(libs.androidx.ui)
-	implementation(libs.androidx.ui.graphics)
-	implementation(libs.androidx.ui.tooling.preview)
-	implementation(libs.androidx.material3)
-
-	//compose navigation
-	implementation("androidx.navigation:navigation-compose:2.8.4")
-	//hilt
-	implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-	implementation("com.google.dagger:hilt-android:2.51.1")
-	ksp("com.google.dagger:hilt-android-compiler:2.51.1")
-
-	// datastore
-	implementation("androidx.datastore:datastore-preferences:1.1.1")
-
-	// room database
-	implementation("androidx.room:room-runtime:2.6.1")
-	ksp("androidx.room:room-compiler:2.6.1")
-	implementation("androidx.room:room-ktx:2.6.1")
-
-	// icons - extended
-	implementation("androidx.compose.material:material-icons-extended:1.7.5")
-
-	//json
-	implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
-
-	// accompanist-permissions
-	implementation("com.google.accompanist:accompanist-permissions:0.31.2-alpha")
-
-	// splash screen
-	implementation("androidx.core:core-splashscreen:1.0.1")
-
-	// google ads
-	implementation("com.google.android.gms:play-services-ads:23.5.0")
-
-
-	testImplementation(libs.junit)
-	androidTestImplementation(libs.androidx.junit)
-	androidTestImplementation(libs.androidx.espresso.core)
-	androidTestImplementation(platform(libs.androidx.compose.bom))
-	androidTestImplementation(libs.androidx.ui.test.junit4)
-	debugImplementation(libs.androidx.ui.tooling)
-	debugImplementation(libs.androidx.ui.test.manifest)
-}
-```
----
-
-## Final Implementations File
-
-### Project Gradle -
-
-```kotlin
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
 	alias(libs.plugins.android.application) apply false
 	alias(libs.plugins.kotlin.android) apply false
@@ -205,6 +104,12 @@ dependencies {
 	// google ads
 	implementation(libs.play.services.ads)
 
+	implementation(libs.androidx.startup.runtime)
+
+	implementation(libs.material3)
+
+	implementation(libs.lottie.compose)
+
 
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
@@ -237,6 +142,8 @@ kotlinxSerializationJson = "1.6.3"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
 composeBom = "2024.04.01"
+lottieCompose = "5.2.0"
+material3 = "1.3.1"
 materialIconsExtended = "1.7.5"
 navigationCompose = "2.8.4"
 playServicesAds = "23.5.0"
@@ -247,6 +154,7 @@ roomRuntime = "2.6.1"
 ksp = "2.0.20-1.0.24"
 hilt = "2.51.1"
 serializer = "1.8.0"
+startupRuntime = "1.2.0"
 
 
 [libraries]
@@ -260,6 +168,7 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-startup-runtime = { module = "androidx.startup:startup-runtime", version.ref = "startupRuntime" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -276,6 +185,8 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
+material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
 play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "playServicesAds" }
 
 [plugins]

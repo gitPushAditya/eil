@@ -505,3 +505,79 @@ class AppDataRepository @Inject constructor(private val appData: AppData) {
 	}
 }
 ```
+---
+
+### Initializing (Optional)
+
+```kotlin
+package com.visionforgestudio.drinkup
+
+import android.app.Application
+import android.content.Context
+import androidx.startup.Initializer
+import com.visionforgestudio.drinkup.data.datastore.repository.AppDataRepository
+import com.visionforgestudio.drinkup.data.datastore.repository.UserDataRepository
+import com.visionforgestudio.drinkup.data.datastore.repository.UserPreferencesRepository
+import com.visionforgestudio.drinkup.di.entrypoint.DrinkUpInitializerEntryPoint
+import dagger.hilt.android.EntryPointAccessors
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+class DrinkUpInitializer : Initializer<Unit> {
+	
+	override fun create(context: Context) {
+		// Access dependencies via Hilt's EntryPointAccessors
+		val app = context.applicationContext as Application
+		val entryPoint = EntryPointAccessors.fromApplication(app, DrinkUpInitializerEntryPoint::class.java)
+		
+		// Access repositories from the entry point
+		val userDataRepository = entryPoint.userDataRepository()
+		val appDataRepository = entryPoint.appDataRepository()
+		val userPreferencesRepository = entryPoint.userPreferencesRepository()
+		
+		// Initialize repositories
+		CoroutineScope(Dispatchers.IO).launch {
+			userDataRepository.initializeDefaults()
+			appDataRepository.initializeDefaults()
+			userPreferencesRepository.initializeDefaults()
+		}
+	}
+	
+	override fun dependencies(): List<Class<out Initializer<*>>> {
+		return emptyList()
+	}
+}
+```
+
+```kotlin
+package com.visionforgestudio.drinkup.di.entrypoint
+
+import com.visionforgestudio.drinkup.data.datastore.repository.AppDataRepository
+import com.visionforgestudio.drinkup.data.datastore.repository.UserDataRepository
+import com.visionforgestudio.drinkup.data.datastore.repository.UserPreferencesRepository
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@EntryPoint
+@InstallIn(SingletonComponent::class)
+interface DrinkUpInitializerEntryPoint {
+	fun userDataRepository(): UserDataRepository
+	fun appDataRepository(): AppDataRepository
+	fun userPreferencesRepository(): UserPreferencesRepository
+}
+```
+
+```xml
+<provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false">
+            <meta-data
+                android:name=".DrinkUpInitializer"
+                android:value="androidx.startup" />
+        </provider>
+```
