@@ -1,0 +1,26 @@
+# Navigation
+
+## Defining Screens Variables
+
+To navigate to ech screen, we are going to need a string route for each screen. To avoid any mistakes, we will define these variables in a separate AppScreens sealed class.
+
+```kotlin
+sealed class AppScreens(val route: String) {
+    data object Intro : AppScreens("intro")
+    data object Home : AppScreens("home")
+    data object Timeline : AppScreens("timeline")
+    data object Statistics : AppScreens("statistics")
+    data object Settings : AppScreens("settings")
+    data object Profile : AppScreens("profile")
+    data object Alarm : AppScreens("alarm")
+    data object Database : AppScreens("database")
+    data object Premium : AppScreens("premium")
+    data object Contact : AppScreens("contact")
+}
+```
+
+Now we can access routes by writing - `AppScreens.Intro.route`
+
+--- 
+
+## NavController 
