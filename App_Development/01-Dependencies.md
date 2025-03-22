@@ -45,6 +45,9 @@ billingClient = "7.1.1"
 
 # glance
 glance = "1.1.1"
+
+# exoplayer
+exoplayer = "1.5.1"
 ```
 ### Plugins Versions
 
@@ -105,6 +108,13 @@ billingClient = { group = "com.android.billingclient", name = "billing", version
 
 # glance
 androidx-glance = { group = "androidx.glance", name = "glance", version.ref = "glance" }
+
+#exoplayer
+androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "exoplayer" }
+androidx-media3-exoplayer-dash = { group = "androidx.media3", name = "media3-exoplayer-dash", version.ref = "exoplayer" }
+androidx-media3-exoplayer-hls = { group = "androidx.media3", name = "media3-exoplayer-hls", version.ref = "exoplayer" }
+androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "exoplayer" }
+
 ```
 
 ```toml
@@ -175,27 +185,41 @@ configurations.all{
 
 ```groovy
 implementation(libs.accompanist.systemuicontroller)
-    implementation(libs.accompanist.permissions)
-    implementation(libs.androidx.core.splashscreen)
-    implementation(libs.androidx.datastore.preferences)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.com.google.dagger.hilt.android)
-    implementation(libs.com.google.dagger.hilt.android.compiler)
-    ksp(libs.com.google.dagger.hilt.android.compiler)
-    implementation(libs.androidx.material.icons.extended)
-    implementation(libs.androidx.navigation.compose)
-//    implementation(libs.play.services.ads)
-    implementation(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.androidx.startup.runtime)
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    implementation(platform(libs.firebase.bom))
+implementation(libs.accompanist.permissions)
+implementation(libs.androidx.core.splashscreen)
+implementation(libs.androidx.datastore.preferences)
+implementation(libs.androidx.hilt.navigation.compose)
+implementation(libs.com.google.dagger.hilt.android)
+implementation(libs.com.google.dagger.hilt.android.compiler)
+ksp(libs.com.google.dagger.hilt.android.compiler)
+implementation(libs.androidx.material.icons.extended)
+implementation(libs.androidx.navigation.compose)
+implementation(libs.play.services.ads)
+implementation(libs.androidx.room.compiler)
+implementation(libs.androidx.room.ktx)
+implementation(libs.androidx.room.runtime)
+ksp(libs.androidx.room.compiler)
+implementation(libs.kotlinx.serialization.json)
+implementation(libs.androidx.startup.runtime)
+implementation(libs.firebase.analytics)
+implementation(libs.firebase.crashlytics)
+implementation(platform(libs.firebase.bom))
 //    implementation(libs.billingClient)
-    implementation(libs.androidx.glance)
+implementation(libs.androidx.glance)
+implementation(libs.androidx.media3.exoplayer)
+implementation(libs.androidx.media3.ui)
+implementation(libs.androidx.media3.exoplayer.dash)
+implementation(libs.androidx.media3.exoplayer.hls)
+```
+---
+
+### Google Ads Trial Id 
+
+```xml
+
+<meta-data
+        android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-3940256099942544~3347511713"/>
 ```
 
 ---
