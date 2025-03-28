@@ -15,7 +15,6 @@ An Integrated Development Environment (IDE) combines tools  like code editors, c
 1. OPen VSCode and navigate to Extentions(Ctrl + Shift + X)
 2. Search for "C++" and install the following extentions:
     - "C/C++" by Microsoft
-    - "C/C++" by Microsoft
     - "C/C++ IntelliSense" by Microsoft
     - "C++ Intellisense" (optional)
     - "Code Runner" (optional but recommended)
@@ -45,6 +44,7 @@ An Integrated Development Environment (IDE) combines tools  like code editors, c
 
 #### c_cpp_properties.json
 
+For Linux
 ```json
 {
     "configurations": [
@@ -64,8 +64,31 @@ An Integrated Development Environment (IDE) combines tools  like code editors, c
 }
 ```
 
+or 
+
+For Windows
+```json
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "C:/MinGW/bin/g++.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ],
+    "version": 4
+}
+```
+
 #### task.json
 
+```json
 {
     "version": "2.0.0",
     "tasks": [
@@ -87,7 +110,7 @@ An Integrated Development Environment (IDE) combines tools  like code editors, c
         }
     ]
 }
-
+```
 #### launch.json
 
 ```json
