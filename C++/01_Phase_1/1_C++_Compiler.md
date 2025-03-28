@@ -49,7 +49,7 @@ brew install gcc
 
 #### Option-1 MinGW-w64 (recommended for beginner)
 
-1. Download the MinGW-w64 installer from [winlibs.com]()
+1. Download the MinGW-w64 installer from [winlibs.com](https://winlibs.com/)
 2. Run the installer and follow the prompts
 3. Choose the latest GCC version, architecture (x86_64), and threads (posix)
 4. Install to a path without spaces, like C:\mingw64
@@ -108,13 +108,13 @@ echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.bash_profile
 
 ### On Windows
 
-1. Download the LLVM installer from [https://releases.llvm.org/download.html]()
+1. Download the LLVM installer from [https://releases.llvm.org/download.html](https://releases.llvm.org/download.html)
 2. Run installer and follow the prompts
 3. Check "Add LLVM to the system PATH" during installation
 
 ## Installing MSVC
 
-1. Download the Visual Studio Commmunity installer from [https://visualstudio.microsoft.com/downloads/]()
+1. Download the Visual Studio Commmunity installer from [https://visualstudio.microsoft.com/downloads/](https://visualstudio.microsoft.com/downloads/])
 2. Run the installer
 3. Select "Desktop development with C++"
 4. Complete the installation(this might take a while)
