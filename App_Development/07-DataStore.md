@@ -143,4 +143,26 @@ object CFDataStoreModule {
 }
 ```
 
+## Data Store Module
+
+```kt
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataStoreModule {
+
+    @Provides
+    @Singleton
+    fun provideAppDataStore(
+        @ApplicationContext context: Context,
+        utils: CFDataSore
+    ): AppDataStore {
+        return AppDataStoreImpl(
+            context,
+            utils
+        )
+    }
+}
+```
+
 ---
