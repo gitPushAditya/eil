@@ -126,3 +126,16 @@ implementation(libs.accompanist.systemuicontroller)
     alias(libs.plugins.gms.services) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
 ```
+
+---
+
+## Manifest
+
+In Application - 
+
+```xml
+<meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+
+```
