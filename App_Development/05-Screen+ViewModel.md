@@ -2,17 +2,18 @@
 
 ## Screen with Navigation
 
-```kotlin
+```kt
 @Composable
 fun IntroScreen(navController: NavController) {
 // Content here
 }
-
 ```
+
+---
 
 ## ViewModel
 
-```kotlin
+```kt
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 # ColorScheme
 
-```kotlin
+```kt
 
 private val lightScheme = lightColorScheme(
     primary = Color(0xFF008080),

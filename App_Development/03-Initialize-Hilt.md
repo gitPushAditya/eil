@@ -2,7 +2,7 @@
 
 ## Creating Application Class
 
-```kotlin
+```kt
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
@@ -14,15 +14,19 @@ class HabitFlowApp: Application() {
 }
 ```
 
+---
+
 ## Manifest
 
-```xml
+```kt
 android:name=".HabitFlowApp"
 ```
 
+---
+
 ## Entry Point
 
-```kotlin
+```kt
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,3 +38,5 @@ class MainActivity : ComponentActivity() {
     }
 }
 ```
+
+---
