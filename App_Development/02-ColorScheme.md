@@ -106,6 +106,8 @@ fun HabitFlowTheme(
         else -> lightScheme
     }
 
+    
+
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,

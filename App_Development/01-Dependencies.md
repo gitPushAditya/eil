@@ -89,7 +89,7 @@ configurations.all{
         }
     }
 
-implementation(libs.accompanist.systemuicontroller)
+    implementation(libs.accompanist.systemuicontroller)
     implementation(libs.accompanist.permissions)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.datastore.preferences)
