@@ -1,24 +1,24 @@
 {
   "main": {
-    "id": "bf22f00afb84f34a",
+    "id": "44f956f741b0b4df",
     "type": "split",
     "children": [
       {
-        "id": "42244ed42a07978e",
+        "id": "46d89daf5e4e446c",
         "type": "tabs",
         "children": [
           {
-            "id": "4a511b8301224656",
+            "id": "21a1e77dd7c91b62",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Pandas/04 - Pandas - Advanced Viewing and Selecting.md",
+                "file": "Extras/001 Enums.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "04 - Pandas - Advanced Viewing and Selecting"
+              "title": "001 Enums"
             }
           }
         ]
@@ -27,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "214cf69fa45849c8",
+    "id": "aee046d88b8d0626",
     "type": "split",
     "children": [
       {
-        "id": "e33dad4dabdba127",
+        "id": "a560846b4b3e7791",
         "type": "tabs",
         "children": [
           {
-            "id": "ab9d01cfce066f0c",
+            "id": "a01aff79ccc7af3c",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +48,7 @@
             }
           },
           {
-            "id": "33ff9a5a7a06c1a6",
+            "id": "239922da3c05b05b",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +65,7 @@
             }
           },
           {
-            "id": "88e26defcfeed206",
+            "id": "9aa2675a76162afa",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,22 +81,22 @@
     "width": 300
   },
   "right": {
-    "id": "22a9d69a913c2c22",
+    "id": "3818926fa6d89935",
     "type": "split",
     "children": [
       {
-        "id": "f1f09241c2068fdd",
+        "id": "bc2bc97f561a7750",
         "type": "tabs",
         "children": [
           {
-            "id": "930646a9d40045a2",
+            "id": "abd60779b67cab3a",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "01-Basics/11 - Step 6 - Experimentation.md",
+                "file": "02_Themes/03 Theme Provider.md",
                 "collapseAll": false,
-                "extraContext": false,
+                "extraContext": true,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
@@ -104,25 +104,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 11 - Step 6 - Experimentation"
+              "title": "Backlinks for 03 Theme Provider"
             }
           },
           {
-            "id": "45595496df13f9ac",
+            "id": "ee80af997e6d46b1",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "01-Basics/11 - Step 6 - Experimentation.md",
+                "file": "02_Themes/03 Theme Provider.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 11 - Step 6 - Experimentation"
+              "title": "Outgoing links from 03 Theme Provider"
             }
           },
           {
-            "id": "3ac4c5afc647edd6",
+            "id": "e85d3db4e6d4c58c",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,25 +137,25 @@
             }
           },
           {
-            "id": "a6430daf6c2e7e30",
+            "id": "1f88360cf54de065",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "01-Basics/11 - Step 6 - Experimentation.md",
+                "file": "02_Themes/03 Theme Provider.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 11 - Step 6 - Experimentation"
+              "title": "Outline of 03 Theme Provider"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
   "left-ribbon": {
@@ -165,49 +165,25 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "edge-tts:Read note aloud": false
+      "command-palette:Open command palette": false
     }
   },
-  "active": "4a511b8301224656",
+  "active": "21a1e77dd7c91b62",
   "lastOpenFiles": [
-    "03-Pandas/03 - Pandas - Viewing and Selecting.md",
-    "03-Pandas/03 - Pandas - Describing Data.md",
-    "03-Pandas/02 - Pandas - Getting Started.md",
-    "03-Pandas/01 - Introduction.md",
-    "02-Installation/02 - Anaconda.md",
-    "02-Installation/03 - Commands for Navigating Files and Folders.md",
-    "02-Installation/04 - Jupyter Notebook - 01.md",
-    "02-Installation/04 - Jupyter Notebook - 02.md",
-    "02-Installation/01 - MiniConda.md",
-    "01-Basics/05 - Step 3 - Evaluation.md",
-    "Summaries/01-Basics.md",
-    "Summaries",
-    "New folder",
-    "01-Basics/04 - Step 2 - Understanding the Data.md",
-    "01-Basics/03 - Step 1 - Problem Definition.md",
-    "01-Basics/02 - Machine Learning Framework.md",
-    "01-Basics/01 - What is Machine Learning.md",
-    "01-Basics/11 - Step 6 - Experimentation.md",
-    "01-Basics/10 - Step 5 - Modeling Part 4.md",
-    "01-Basics/09 - Step 5 - Modeling Part 3.md",
-    "01-Basics/08 - Step 5 - Modeling Part 2.md",
-    "01-Basics/07 - Step 5 - Modeling Part 1.md",
-    "01-Basics/06 - Step 4 - Features.md",
-    "Untitled",
-    "03-Pandas/Practice/01/Worksheet.md",
-    "Untitled.canvas",
-    "03-Pandas/Practice/01/products.csv",
-    "03-Pandas/Practice/01/products.csv.crdownload",
-    "03-Pandas/Practice/01/sales.csv",
-    "03-Pandas/Practice/01/sales.csv.crdownload",
-    "03-Pandas/Practice/01/employees.csv",
-    "03-Pandas/Practice/01/employees.csv.crdownload",
-    "03-Pandas/08 - Pandas - Extra.md",
-    "03-Pandas/Practice/01",
-    "03-Pandas/07 - Pandas - Sample,  Reset, Apply.md",
-    "03-Pandas/06 - Pandas - Creating and Dropping Columns.md",
-    "03-Pandas/05 - Pandas - Manipulating Data.md",
-    "02-Installation/output_7_1.png"
+    "Extras/002 DateTime.md",
+    "Extras/001 Enums.md",
+    "05_Isar_Database/Database Model.md",
+    "02_Themes/03 ThemeMode.md",
+    "02_Themes/04 Theme Provider.md",
+    "02_Themes/02 App Themes.md",
+    "03_Routing/02 App Routing.md",
+    "03_Routing/01 App Screens.md",
+    "Extras",
+    "05_Isar_Database",
+    "04_App_File/01 App.md",
+    "04_App_File/01 App Dart.md",
+    "04_App_File",
+    "03_Routing",
+    "02_Themes/04 Applying Theme.md"
   ]
 }

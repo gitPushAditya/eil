@@ -1,0 +1,21 @@
+id,name,department,salary,hire_date,manager_id,performance_score,email
+1,Alice Smith,Sales,72000,2018-05-01,3,4.6,alice@company.com
+2,Bob Jones,HR,68000,2017-08-11,,4.2,bob@company.com
+3,Carol Evans,Sales,95000,2015-01-15,,4.9,carol@company.com
+4,David Johnson,IT,88000,2016-03-28,6,4.3,davidj@company.com
+5,Emily Wilson,Marketing,73000,2019-07-22,8,3.9,emilyw@company.com
+6,Fiona Brown,IT,105000,2013-09-19,,4.8,fiona@company.com
+7,George Clark,HR,69000,2020-11-02,2,4.1,georgec@company.com
+8,Hannah Lee,Marketing,77000,2017-01-14,,4.7,hannah@company.com
+9,Ian Turner,Sales,82000,2021-04-18,3,3.8,ian@company.com
+10,Jessica Adams,Marketing,85000,2016-10-06,8,4.5,jessica@company.com
+11,Kevin White,IT,91000,2018-12-03,6,4.4,kevinw@company.com
+12,Linda Harris,HR,75000,2019-03-20,2,4.0,linda@company.com
+13,Michael Scott,Sales,69000,2022-05-25,3,3.7,michael@company.com
+14,Nora Patel,Marketing,90000,2015-09-17,8,4.9,nora@company.com
+15,Oscar King,IT,97000,2017-06-11,6,4.2,oscar@company.com
+16,Paula Green,HR,72000,2018-08-28,2,3.6,paula@company.com
+17,Quinn Miller,IT,98000,2014-04-24,6,4.7,quinn@company.com
+18,Rachel Young,Sales,86000,2016-12-30,3,4.4,rachel@company.com
+19,Steve Lopez,Marketing,82000,2020-05-19,8,3.8,stevel@company.com
+20,Tina Baker,HR,73000,2021-09-08,2,4.3,tina@company.com
